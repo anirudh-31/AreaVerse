@@ -94,7 +94,7 @@ nav > .hamburger.active div:nth-child(3) {
 
     nav > .nav-links {
         position: absolute;
-        top: 60px;
+        top: 50px;
         right: -100%;
         background: rgba(255, 255, 255, .95);
         backdrop-filter: blur(10px);

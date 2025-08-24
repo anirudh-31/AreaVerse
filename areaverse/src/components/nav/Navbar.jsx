@@ -14,12 +14,13 @@ function Navbar() {
                 AreaVerse
             </div>
             <ul className="nav-links" id="navLinks">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Explore</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Login | Signup</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/">Community</a></li>
+                <li><a href="/">Contact</a></li>
+                <li><a href="/account">Login | Signup</a></li>
             </ul>
+            
             <div className="hamburger" id='hamburger' onClick={toggleHamburgerDisplay}>
               <div></div>
               <div></div>

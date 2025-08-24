@@ -8,12 +8,16 @@ import Landing from "./pages/Landing/Landing";
 import './index.css';
 import Navbar from "./components/nav/Navbar";
 import Footer from "./components/Footer/Footer";
-// import AuthPage from "./pages/Auth/AuthPage";
+import Auth from "./pages/Auth/Auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />
+  },
+  {
+    path: "/account",
+    element: <Auth />
   }
 ]);
 
