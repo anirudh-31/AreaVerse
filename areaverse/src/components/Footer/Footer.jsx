@@ -3,7 +3,7 @@ import './Footer.css'
 function Footer() {
   return (
     <React.Fragment>
-        <footer>
+        <footer className="footer">
             &copy; 2025 AreaVerse. All rights reserved.
         </footer>
     </React.Fragment>

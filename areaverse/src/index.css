@@ -1,13 +1,71 @@
- * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root {
+  --primary-color    : #008080;
 
-    body {
-      background: linear-gradient(135deg, #dbeafe, #e0f2fe, #fff);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  /* Deep Teal */
+  --primary-hover    : #006666;
+
+  /* Darker Teal */
+  --secondary-color  : #EAD9B8;
+
+  /* Light Gold */
+  --text-dark        : #333333;
+
+  /* For primary text */
+  --text-medium      : #666666;
+
+  /* For secondary text */
+  --background-light : #F5F5F5;
+
+  /* For backgrounds and borders */
+  --background-white : #FFFFFF;
+
+  /* For card backgrounds */
+  --error-color      : #d9534f;
+  --warning-color    : #f0ad4e;
+  --success-color    : #5cb85c;
+  --input-border     : #d1d5db;
+  --input-focus      : #9ca3af;
+}
+*{
+  box-sizing             : border-box;
+}
+body {
+  font-family            : 'Inter', sans-serif;
+  -webkit-font-smoothing : antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x             : hidden;
+  background-color       : var(--background-light);
+  color                  : var(--text-dark);
+  margin                 : 0;
+  padding                : 0;
+  display                : flex;
+  flex-direction         : column;
+  min-height             : 100vh;
+  width                  : 100vw;
+}
+
+.container {
+  width     : 100%;
+  max-width : 1280px;
+  /* margin    : 0 auto; */
+  padding   : 0 1rem;
+}
+
+.centered-container{
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+.flex-center {
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.flex-between {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+}
+

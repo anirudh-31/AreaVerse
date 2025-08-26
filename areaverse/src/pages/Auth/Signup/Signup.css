@@ -1,0 +1,53 @@
+.password-strength-container {
+    margin-top: 0.5rem;
+}
+
+.password-strength-meter {
+    height: 5px;
+    width: 100%;
+    border-radius: 2.5px;
+    background-color: #e5e7eb;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.weak {
+    background-color: var(--error-color);
+}
+
+.medium {
+    background-color: var(--warning-color);
+}
+
+.strong {
+    background-color: var(--success-color);
+}
+
+.password-strength-text {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: var(--text-medium);
+}
+
+.text-weak {
+    color: var(--error-color);
+}
+
+.text-medium {
+    color: var(--warning-color);
+}
+
+.text-strong {
+    color: var(--success-color);
+}
+
+.error-message{
+    color: var(--error-color);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
