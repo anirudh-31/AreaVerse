@@ -49,10 +49,10 @@ function Login() {
                             <input type="email" name="userEmail" value={formData.userEmail} id="email" placeholder='you@example.com' onChange={handleFormDataChange} />
                             <span id="login-email-error" className="error-message"></span>
                         </div>
-                        <div class="input-group">
-                            <label for="login-password">Password</label>
+                        <div className="input-group">
+                            <label htmlFor="login-password">Password</label>
                             <input type={viewPassword ? "text" : "password"} id="login-password" placeholder="Enter your password" />
-                            <button type="button" class="password-toggle" onClick={handlePasswordView}>
+                            <button type="button" className="password-toggle" onClick={handlePasswordView}>
                                 {
                                     viewPassword ?
                                         <EyeOff /> :
@@ -62,7 +62,7 @@ function Login() {
                             </button>
                             <span id="login-password-error" class="error-message"></span>
                         </div>
-                        <button type="submit" class="submit-btn" onClick={handleUserLogin}>Login</button>
+                        <button type="submit" className="submit-btn" onClick={handleUserLogin}>Login</button>
                     </form>
                 </div>
             </div>
