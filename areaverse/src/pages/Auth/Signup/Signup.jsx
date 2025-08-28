@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import './Signup.css'
+import './Signup.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../../features/auth/authSlice';
+
 function Signup() {
+    const dispatch         = useDispatch();
+    const {loading, error} = useSelector((state) => {
+        return state.auth
+    });
+
     const [formData, setFormData] = useState({
         userName         : "",
         userEmail        : "",
@@ -25,6 +33,7 @@ function Signup() {
         firstNameError    : "",
 
     })
+    
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
@@ -83,6 +92,20 @@ function Signup() {
 
     function handleUserSignup(event){
         event.preventDefault();
+        dispatch(registerUser(
+            {
+                "username"  : formData.userName,
+                "first_name": formData.firstName,
+                "last_name" : formData.lastName,
+                "profession": "",
+                "password"  : formData.userPassword,
+                "city"      : formData.city,
+                "state"     : formData.state,
+                "area"      : formData.area,
+                "email"     : formData.userEmail
+            }
+        ));
+        
     }
 
     useEffect(() => {
@@ -220,8 +243,15 @@ function Signup() {
                                         <span id="signup-areaname-error" class="error-message"></span>
                                     </div>
                                     <div class="btn-group">
-                                        <button type="button" class="submit-btn" id="back-step-btn" onClick={(evt) => toggleSignUpStep(evt, 1)} style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)" }}>Back</button>
-                                        <button type="submit" class="submit-btn" id="signup-submit-btn" onClick={handleUserSignup}>Sign Up</button>
+                                        <button type="button" class="submit-btn" id="back-step-btn" onClick={(evt) => toggleSignUpStep(evt, 1)} style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)" }} disabled={loading}>Back</button>
+                                        <button type="submit" class="submit-btn" id="signup-submit-btn" onClick={handleUserSignup} disabled={loading}>
+                                            {
+                                                loading ?
+                                                <><span class="spinner"></span> Loading...</>:
+                                                <>
+                                                Sign Up</>
+                                            }
+                                        </button>
                                     </div>
                                 </div>
                         }

@@ -1,12 +1,19 @@
 import { Eye, EyeOff } from 'lucide-react';
 import React, { useState } from 'react';
 import './Login.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../../features/auth/authSlice';
+
 function Login() {
     const [formData, setFormData] = useState({
         userEmail: "",
         userPassword: ""
     })
-    const [viewPassword, toggleViewPassword] = useState(false)
+    const [viewPassword, toggleViewPassword] = useState(false);
+    const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => {
+        return state.auth
+    });
 
     function handleFormDataChange(event) {
         event.preventDefault();
@@ -23,7 +30,12 @@ function Login() {
 
     function handleUserLogin(event) {
         event.preventDefault();
-        console.log(formData)
+        dispatch(loginUser({
+                "userEmailOrUserName": formData.userEmail,
+                "password"           : formData.userPassword
+            }
+        ));
+        
     }
     
     return (
@@ -51,7 +63,7 @@ function Login() {
                         </div>
                         <div className="input-group">
                             <label htmlFor="login-password">Password</label>
-                            <input type={viewPassword ? "text" : "password"} id="login-password" placeholder="Enter your password" />
+                            <input type={viewPassword ? "text" : "password"} id="login-password" name="userPassword" value={formData.userPassword} onChange={handleFormDataChange} placeholder="Enter your password" />
                             <button type="button" className="password-toggle" onClick={handlePasswordView}>
                                 {
                                     viewPassword ?
@@ -62,7 +74,14 @@ function Login() {
                             </button>
                             <span id="login-password-error" class="error-message"></span>
                         </div>
-                        <button type="submit" className="submit-btn" onClick={handleUserLogin}>Login</button>
+                        <button type="submit" className="submit-btn" onClick={handleUserLogin} disabled={loading}>
+                            {
+                                                loading ?
+                                                <><span class="spinner"></span> Loading...</>:
+                                                <>
+                                                Login</>
+                                            }
+                        </button>
                     </form>
                 </div>
             </div>
