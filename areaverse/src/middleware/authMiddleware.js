@@ -4,21 +4,36 @@ import api from "../api/axios";
 let isRefreshing = false;
 
 const authMiddleware = (store) => (next) => async (action) => {
-    if (action.type.endsWith("/rejected") && action.error?.message?.includes("403")) {
-    if (!isRefreshing) {
-      isRefreshing = true;
-      try {
-        const newToken = await store.dispatch(refreshToken()).unwrap();
-        api.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
-      } catch (err) {
-        store.dispatch(logoutUser());
-      } finally {
-        isRefreshing = false;
+  // Intercept rejected async thunks
+  if (action.type.endsWith("/rejected") && action.error) {
+    console.log("Rejected action:", action); // Debugging
+    
+    // Check if it's a 403/401 error
+    const status = action.error?.status || action.payload?.status;
+    if (status === 403 || status === 401) {
+      if (!isRefreshing) {
+        isRefreshing = true;
+        try {
+          const newToken = await store.dispatch(refreshToken()).unwrap();
+
+          // Update axios default header
+          api.defaults.headers.common["Authorization"] = `Bearer ${newToken.accessToken}`;
+
+          // ✅ Optionally: retry the failed action
+          if (action.meta.arg) {
+            return store.dispatch(action.meta.arg); 
+          }
+        } catch (err) {
+          store.dispatch(logoutUser());
+        } finally {
+          isRefreshing = false;
+        }
       }
     }
   }
 
   return next(action);
 };
+
 
 export default authMiddleware

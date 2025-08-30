@@ -13,6 +13,7 @@ import Home from "./pages/Home/Home";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
 import ProtectedLayout from "./components/ProtectedLayout/ProtectedLayout";
+import MyProfile from "./pages/MyProfile/MyProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
       {
         element: <ProtectedLayout />,
         children: [
-          {path: "/home", element: <Home />}
+          {path: "/home", element: <Home />},
+          {path: "/me"  , element: <MyProfile />}
         ]
       }
     ]

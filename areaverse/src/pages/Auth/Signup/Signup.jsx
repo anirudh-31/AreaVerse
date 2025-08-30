@@ -103,7 +103,8 @@ function Signup() {
                 "city": formData.city,
                 "state": formData.state,
                 "area": formData.area,
-                "email": formData.userEmail
+                "email": formData.userEmail,
+                "dateOfBirth": new Date(formData.dateOfBirth).toISOString()
             }
         ));
 

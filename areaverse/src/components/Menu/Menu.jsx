@@ -42,8 +42,8 @@ function Navbar() {
               </span>
             </li>
             <li>
-              <span className="nav-link">
-                <UserRoundCog />
+              <span className="nav-link"  onClick={() => navigate("/me")}>
+                <UserRoundCog/>
                 Profile
               </span>
             </li>
@@ -96,7 +96,7 @@ function Navbar() {
               </span>
             </li>
             <li>
-              <span className="mobile-nav-link">
+              <span className="mobile-nav-link" onClick={() => navigateTo("/me")}>
                 <UserRoundCog />
                 Profile
               </span>
