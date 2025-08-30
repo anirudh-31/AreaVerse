@@ -1,71 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --primary-color    : #008080;
+  --primary-color: #008080;
 
   /* Deep Teal */
-  --primary-hover    : #006666;
+  --primary-hover: #006666;
 
   /* Darker Teal */
-  --secondary-color  : #EAD9B8;
+  --secondary-color: #EAD9B8;
 
   /* Light Gold */
-  --text-dark        : #333333;
+  --text-dark: #333333;
 
   /* For primary text */
-  --text-medium      : #666666;
+  --text-medium: #666666;
 
   /* For secondary text */
-  --background-light : #F5F5F5;
+  --background-light: #FDFDFD;
 
   /* For backgrounds and borders */
-  --background-white : #FFFFFF;
+  --background-white: #FFFFFF;
 
   /* For card backgrounds */
-  --error-color      : #d9534f;
-  --warning-color    : #f0ad4e;
-  --success-color    : #5cb85c;
-  --input-border     : #d1d5db;
-  --input-focus      : #9ca3af;
+  --error-color: #d9534f;
+  --warning-color: #f0ad4e;
+  --success-color: #5cb85c;
+  --input-border: #d1d5db;
+  --input-focus: #9ca3af;
+
+  /* For menu */
+  --menu-primary-color: #4DA09E;
+  --menu-secondary-color: #a0aec0;
+  --menu-background-color: #EFEFF4;
 }
-*{
-  box-sizing             : border-box;
+
+* {
+  box-sizing: border-box;
 }
+
 body {
-  font-family            : 'Inter', sans-serif;
-  -webkit-font-smoothing : antialiased;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x             : hidden;
-  background-color       : var(--background-light);
-  color                  : var(--text-dark);
-  margin                 : 0;
-  padding                : 0;
-  display                : flex;
-  flex-direction         : column;
-  min-height             : 100vh;
-  width                  : 100vw;
+  overflow-x: hidden;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  /* stack Navbar -> Content -> Footer */
+  min-height: 100vh;
+  /* full screen height */
+}
+
+@media (min-width: 768px) {
+  .app-layout {
+    flex-direction: row;
+  }
+}
+
+.app-layout main {
+  flex: 1;
+  padding: 1rem;
 }
 
 .container {
-  width     : 100%;
-  max-width : 1280px;
+  width: 100%;
+  max-width: 1280px;
   /* margin    : 0 auto; */
-  padding   : 0 1rem;
+  padding: 0 1rem;
 }
 
-.centered-container{
-  display        : flex;
-  align-items    : center;
+.centered-container {
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
+
 .flex-center {
-  display        : flex;
-  align-items    : center;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .flex-between {
-  display        : flex;
-  align-items    : center;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
-

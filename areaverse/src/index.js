@@ -6,30 +6,36 @@ import {
 } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import './index.css';
-import Navbar from "./components/nav/Navbar";
-import Footer from "./components/Footer/Footer";
 import Auth from "./pages/Auth/Auth";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
+import ProtectedLayout from "./components/ProtectedLayout/ProtectedLayout";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (<PublicRoute><Landing /></PublicRoute>)
+    element: (
+        <PublicRoute redirect="/home">
+          <Landing />
+        </PublicRoute>
+      ),
   },
   {
     path: "/account",
-    element: (<PublicRoute><Auth /></PublicRoute>)
+    element: (<Auth />)
   },
   {
-    path: "/home",
-    element: (
-      <ProtectedRoute redirect="/">
-        <Home />
-      </ProtectedRoute>
-    )
+    element: <ProtectedRoute redirect="/"/>,
+    children: [
+      {
+        element: <ProtectedLayout />,
+        children: [
+          {path: "/home", element: <Home />}
+        ]
+      }
+    ]
   }
 ]);
 
@@ -37,10 +43,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Navbar />
       <RouterProvider router={router} />
-      <Footer />
     </Provider>
-
   </React.StrictMode>
 );

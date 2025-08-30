@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './Auth.css'
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 function Auth() {
-    const [title   , setTitle   ] = useState("AreaVerse - Account");
+    const [title, setTitle]       = useState("AreaVerse - Account");
     const [authMode, setAuthMode] = useState("login");
-    const { user }                = useSelector((state) => state.auth);
-    const navigate                = useNavigate();
+
     function toggleAuthMode(mode) {
         setAuthMode(mode);
     }
@@ -33,7 +31,6 @@ function Auth() {
                             <Login /> :
                             <Signup />
                     }
-
                 </div>
             </div>
         </React.Fragment>

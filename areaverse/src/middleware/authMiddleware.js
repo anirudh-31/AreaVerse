@@ -4,7 +4,7 @@ import api from "../api/axios";
 let isRefreshing = false;
 
 const authMiddleware = (store) => (next) => async (action) => {
-    if (action.type.endsWith("/rejected") && action.error?.message?.includes("401")) {
+    if (action.type.endsWith("/rejected") && action.error?.message?.includes("403")) {
     if (!isRefreshing) {
       isRefreshing = true;
       try {

@@ -2,18 +2,48 @@ import React, { useState, useEffect } from 'react'
 import './Landing.css'
 import { useNavigate } from 'react-router-dom';
 import { MessageCircleMore, Network, Users } from 'lucide-react';
-import Footer from '../../components/Footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../features/auth/authSlice';
 function Landing() {
   const [title, setTitle] = useState("AreaVerse - Home");
   const navigate = useNavigate();
+
   useEffect(() => {
     document.title = title;
   }, [title])
-  function navigateToLogin() {
+
+  const user = useSelector((state) => state.auth.user)
+  const dispatch = useDispatch();
+
+  function navigateToLoginPage() {
     navigate("/account")
   }
+  function navigateToHomePage() {
+    navigate("/")
+  }
+
+  function handleLogout() {
+    dispatch(logoutUser())
+  }
+
   return (
     <React.Fragment>
+      <nav className="header">
+        <div className="logo-group">
+          <span className="logo-text" onClick={navigateToHomePage}>
+            AreaVerse
+          </span>
+        </div>
+        {
+          user ?
+            <button id="show-auth-btn" className="auth-button" onClick={handleLogout}>
+              Log out
+            </button> :
+            <button id="show-auth-btn" className="auth-button" onClick={navigateToLoginPage}>
+              Log in | Sign up
+            </button>
+        }
+      </nav>
       <main id="landing-page" className="main-content">
         <section className="container hero-section">
           <div className="hero-content hero-text-container">
@@ -24,7 +54,7 @@ function Landing() {
             <p className="hero-text">
               Share what you love and what needs improvement in your neighborhood. Connect with neighbors and work together to find solutions for local issues.
             </p>
-            <button className="hero-cta" onClick={navigateToLogin}>
+            <button className="hero-cta" onClick={navigateToLoginPage}>
               Start sharing
             </button>
           </div>
@@ -41,7 +71,7 @@ function Landing() {
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon-container">
-                <MessageCircleMore/>
+                <MessageCircleMore />
               </div>
               <h3 className="feature-title">Share Feedback</h3>
               <p className="feature-description">
@@ -68,6 +98,9 @@ function Landing() {
             </div>
           </div>
         </section>
+        <footer className="footer">
+          &copy; 2025 AreaVerse. All rights reserved.
+        </footer>
       </main>
     </React.Fragment>
   )
