@@ -11,13 +11,13 @@ function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  function handleMobileMenuDisplay(){
+  function handleMobileMenuDisplay() {
     toggleMobileMenuDisplay(!displayMobileMenu)
   }
   function handleUserLogOut() {
     dispatch(logoutUser())
   }
-  function navigateTo(link){
+  function navigateTo(link) {
     toggleMobileMenuDisplay(!displayMobileMenu);
     navigate(link);
   }
@@ -27,19 +27,6 @@ function Navbar() {
         <span className="desktop-menu-logo" onClick={() => navigate("/")}>
           AreaVerse
         </span>
-        <div className="user-details">
-          <div className="avatar">
-            {user.username.charAt(0)}
-          </div>
-          <div className="details">
-            <p className="name">
-              {user.username}
-            </p>
-            <p className='email'>
-              {user.email}
-            </p>
-          </div>
-        </div>
         <nav className="nav">
           <ul>
             <li>
@@ -56,56 +43,6 @@ function Navbar() {
             </li>
             <li>
               <span className="nav-link">
-                <MapPinned />
-                Neighborhoods
-              </span>
-            </li>
-            <li>
-              <span className="nav-link">
-                <UserRoundCog />
-                Profile
-              </span>
-            </li>
-            <li>
-              <span className="nav-link" onClick={handleUserLogOut}>
-                <LogOut />
-                Log out
-              </span>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <div id="mobile-nav" className={`mobile-nav ${displayMobileMenu ? 'active' : ''}`}>
-        <div className='mobile-nav-header'>
-          {/* <span className="mobile-menu-logo" onClick={() => navigate("/")}>
-            AreaVerse
-          </span> */}
-          <button id="mobile-menu-close" className='mobile-menu-close' onClick={handleMobileMenuDisplay}>
-            <X />
-          </button>
-        </div>
-        <nav className="nav">
-          <ul>
-            <li>
-              <span className="nav-link" onClick={() => navigateTo("/home")}>
-                <HomeIcon />
-                Home
-              </span>
-            </li>
-            <li>
-              <span className="nav-link">
-                <ChartNoAxesCombined />
-                Dashboard
-              </span>
-            </li>
-            <li>
-              <span className="nav-link">
-                <MapPinned />
-                Neighborhoods
-              </span>
-            </li>
-            <li>
-              <span className="nav-link">
                 <UserRoundCog />
                 Profile
               </span>
@@ -131,17 +68,64 @@ function Navbar() {
             </p>
           </div>
         </div>
+      </aside>
+      <div className="mobile-nav-container">
+        <div className="mobile-navbar">
+          <div className={`mobile-menu-button ${displayMobileMenu ? 'open' : ''}`} onClick={handleMobileMenuDisplay}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span className="mobile-menu-logo" onClick={() => navigate("/")}>
+            AreaVerse
+          </span>
+        </div>
+
+        <div className={`mobile-dropdown ${displayMobileMenu ? 'show' : ''}`}>
+          <ul>
+            <li>
+              <span className="mobile-nav-link" onClick={() => navigateTo("/home")}>
+                <HomeIcon />
+                Home
+              </span>
+            </li>
+            <li>
+              <span className="mobile-nav-link">
+                <ChartNoAxesCombined />
+                Dashboard
+              </span>
+            </li>
+            <li>
+              <span className="mobile-nav-link">
+                <UserRoundCog />
+                Profile
+              </span>
+            </li>
+            <li>
+              <span className="mobile-nav-link" onClick={handleUserLogOut}>
+                <LogOut />
+                Log out
+              </span>
+            </li>
+          </ul>
+          <div className="mobile-nav-user-card">
+            <div className="mobile-nav-user-info">
+              <div className="mobile-nav-avatar">
+                {user.username.charAt(0)}
+              </div>
+              <div className="mobile-nav-user-details">
+                <strong className="mobile-nav-user-name">
+                  {user.username}
+                </strong>
+                <small className='mobile-nav-user-email'>
+                  {user.email}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="mobile-menu">
-        <button id="menu-toggle" className="menu-toggle-btn" onClick={handleMobileMenuDisplay}>
-          <Menu />
-        </button>
-        <span className="mobile-menu-logo" onClick={() => navigate("/")}>
-          AreaVerse
-        </span>
-      </div>
-      
     </React.Fragment>
   )
 }

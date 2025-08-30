@@ -15,7 +15,7 @@
     margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #264653;
+    color: var(--menu-primary-color);
 }
 
 .nav {
@@ -63,11 +63,11 @@
 
 .user-details .details .name {
     font-weight: 600;
-    color: #2d3748;
+    color: var(--menu-primary-color);
 }
 
 .user-details .details .email {
-    color: #718096;
+    color: var(--menu-primary-color);
 }
 
 .nav-link {
@@ -82,85 +82,146 @@
 }
 
 .nav-link:hover {
-    background-color: #f7fafc;
-    /* gray-100 */
+    background-color: var(--menu-secondary-color);
 }
 
-.mobile-menu {
-    background-color: var(--menu-background-color);
-    padding: 1rem;
+.mobile-nav-container {
+    margin: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 1rem;
-}
-
-/* Hamburger button for mobile */
-.menu-toggle-btn {
-    color: var(--primary-color);
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-.mobile-menu-close{
-    color: var(--primary-color);
-    border: none;
-    background: none;
-    cursor: pointer;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--menu-background-color);
 }
 
 .mobile-menu-logo {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #264653;
+    font-weight: bold;
+    color: var(--menu-primary-color);
 }
 
-.mobile-nav {
-    position: fixed;
-    top: 0;
+.mobile-menu-button{
+    width: 24px;
+    height: 16px;
+    position: relative;
+    cursor: pointer;
+}
+
+.mobile-menu-button > span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: var(--menu-primary-color);
+    border-radius: 3px;
+    position: absolute;
     left: 0;
-    width: 16rem;
-    height: 100vh;
-    background-color: var(--menu-background-color);
-    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.35s ease, top 0.35s ease, opacity 0.25s ease;
+}
+
+.mobile-menu-button > span:nth-child(1) {
+    top: 0;
+}
+
+.mobile-menu-button > span:nth-child(2) {
+    top: 8px;
+}
+
+.mobile-menu-button > span:nth-child(3) {
+    top: 16px;
+}
+
+.mobile-menu-button.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 10px;
+}
+
+.mobile-menu-button.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-button.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 10px;
+}
+
+.mobile-dropdown{
+    background: var(--menu-background-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+}
+
+.mobile-dropdown.show {
+    max-height: 400px;
+    /* adjust based on content */
+}
+.mobile-dropdown > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobile-dropdown > ul > li {
+    margin-bottom: 5px;
+}
+
+.mobile-nav-link{
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 1rem;
+    padding: 14px 20px;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--menu-primary-color);
+    font-size: 16px;
+    gap: 10px;
+}
+
+.mobile-nav-link:hover{
+    background: var(--menu-secondary-color);
+}
+
+.mobile-nav-user-card {
+    padding: 14px 20px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
+.mobile-nav-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-nav-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #d0d6e1;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+    color: #444;
+}
+
+.mobile-nav-user-details {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 50;
 }
 
-.mobile-nav.active {
-    transform: translateX(0);
+.mobile-nav-user-details > .mobile-nav-user-name {
+    font-size: 14px;
+    color: #333;
 }
 
-.mobile-nav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 50;
-    margin-bottom: 2rem;
-}
-
-.menu-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.3s ease-in-out;
-    z-index: 40;
-}
-
-.menu-backdrop.active {
-    visibility: visible;
-    opacity: 1;
+.mobile-nav-user-details > .mobile-nav-user-email {
+    font-size: 12px;
+    color: #777;
 }
 
 @media (min-width: 768px) {
@@ -168,7 +229,7 @@
         display: flex;
     }
 
-    .mobile-menu {
+    .mobile-nav-container {
         display: none;
     }
 }
