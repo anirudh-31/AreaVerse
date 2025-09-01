@@ -1,21 +1,20 @@
 .desktop-menu {
     width: 16rem;
-    background: var(--menu-background-color);
+    background: var(--menu-bg);
     padding: 1.5rem;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    margin: 2rem 1rem;
-    height: 90vh;
+    margin: 1rem;
 }
 
 .desktop-menu-logo {
     margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--menu-primary-color);
+    color: var(--color-text);
 }
 
 .nav {
@@ -36,9 +35,10 @@
 .user-details {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border: 1px solid #e2e8f0;
+    border: 1px dashed #e2e8f0;
     border-radius: 0.5rem;
     background-color: #f7fafc;
 }
@@ -58,16 +58,17 @@
 
 .user-details .details p {
     margin: 0;
-    font-size: 0.875rem;
 }
 
 .user-details .details .name {
     font-weight: 600;
-    color: var(--menu-primary-color);
+    color: var(--color-text);
+    font-size: 1rem;
 }
 
 .user-details .details .email {
-    color: var(--menu-primary-color);
+    color: var(--color-text-light);
+    font-size: 0.75rem;
 }
 
 .nav-link {
@@ -75,34 +76,36 @@
     align-items: center;
     gap: 1rem;
     padding: 0.75rem;
-    color: var(--menu-primary-color);
+    color: var(--menu-text);
     cursor: pointer;
     border-radius: 0.5rem;
     transition: background-color 0.2s ease-in-out;
 }
 
 .nav-link:hover {
-    background-color: var(--menu-secondary-color);
+    background-color: var(--menu-hover-bg);
 }
 
 .mobile-nav-container {
-    margin: 1.5rem;
+    margin       : 0.25rem;
+    margin-top   : 1rem;
     border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    overflow     : hidden;
+    box-shadow   : 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .mobile-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    background-color: var(--menu-background-color);
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    padding         : 12px 20px;
+    background-color: var(--menu-bg);
+    height          : 3rem ;
 }
 
 .mobile-menu-logo {
     font-weight: bold;
-    color: var(--menu-primary-color);
+    color: var(--menu-text);
 }
 
 .mobile-menu-button{
@@ -116,7 +119,7 @@
     display: block;
     height: 3px;
     width: 100%;
-    background: var(--menu-primary-color);
+    background: var(--color-text);
     border-radius: 3px;
     position: absolute;
     left: 0;
@@ -150,7 +153,7 @@
 }
 
 .mobile-dropdown{
-    background: var(--menu-background-color);
+    background: var(--menu-bg);
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.4s ease;
@@ -173,17 +176,18 @@
 .mobile-nav-link{
     display: flex;
     align-items: center;
-    margin: 0.5rem 1rem;
-    padding: 14px 20px;
+    margin: 0.5rem;
+    padding: 10px 20px;
     border-radius: 0.5rem;
     text-decoration: none;
-    color: var(--menu-primary-color);
+    color: var(--color-text);
     font-size: 16px;
     gap: 10px;
+    cursor: pointer;
 }
 
 .mobile-nav-link:hover{
-    background: var(--menu-secondary-color);
+    background: var(--menu-hover-bg);
 }
 
 .mobile-nav-user-card {

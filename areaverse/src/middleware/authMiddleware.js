@@ -6,7 +6,6 @@ let isRefreshing = false;
 const authMiddleware = (store) => (next) => async (action) => {
   // Intercept rejected async thunks
   if (action.type.endsWith("/rejected") && action.error) {
-    console.log("Rejected action:", action); // Debugging
     
     // Check if it's a 403/401 error
     const status = action.error?.status || action.payload?.status;
@@ -14,10 +13,9 @@ const authMiddleware = (store) => (next) => async (action) => {
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          const newToken = await store.dispatch(refreshToken()).unwrap();
-
+          const token = await store.dispatch(refreshToken()).unwrap();
           // Update axios default header
-          api.defaults.headers.common["Authorization"] = `Bearer ${newToken.accessToken}`;
+          api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
           // ✅ Optionally: retry the failed action
           if (action.meta.arg) {
@@ -33,6 +31,7 @@ const authMiddleware = (store) => (next) => async (action) => {
   }
 
   return next(action);
+
 };
 
 

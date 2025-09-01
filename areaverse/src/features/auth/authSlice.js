@@ -11,7 +11,10 @@ export const registerUser = createAsyncThunk(
             const res = await api.post(`${AUTH_BASE}/signup`, userData);
             return res.data;
         } catch (err) {
-            return rejectWithValue(err.response?.data || { error: "Sign up failed" })
+            return rejectWithValue({
+                error: err.response?.data.error,
+                status : err.response?.status
+            } || { error: "Sign up failed" })
         }
     }
 );
@@ -24,7 +27,10 @@ export const loginUser = createAsyncThunk(
             const res = await api.post(`${AUTH_BASE}/login`, credentials);
             return res.data
         } catch (err) {
-            return rejectWithValue(err.response?.data || { error: "Login failed" });
+            return rejectWithValue({
+                error: err.response?.data.error,
+                status : err.response?.status
+            } || { error: "Login failed" });
         }
     }
 )
@@ -32,12 +38,15 @@ export const loginUser = createAsyncThunk(
 // Thunk to refresh the token.
 export const refreshToken = createAsyncThunk(
     "auth/refresh",
-    async (_, rejectWithValue) => {
+    async (_, {rejectWithValue}) => {
         try {
             const res = await api.post(`${AUTH_BASE}/refresh`);
-            return res.data.token;
+            return { token: res.data.token };
         } catch (err) {
-            rejectWithValue(err.response?.data || {error : "Refresh failed"});
+            return rejectWithValue({
+                error: err.response?.data.error,
+                status : err.response?.status
+            } || {error : "Refresh failed"});
         }
     }
 )

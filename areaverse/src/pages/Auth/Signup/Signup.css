@@ -17,15 +17,15 @@
 }
 
 .weak {
-    background-color: var(--error-color);
+    background-color: var(--color-error);
 }
 
 .medium {
-    background-color: var(--warning-color);
+    background-color: var(--color-warning);
 }
 
 .strong {
-    background-color: var(--success-color);
+    background-color: var(--color-success);
 }
 
 .password-strength-text {
@@ -35,7 +35,7 @@
 }
 
 .text-weak {
-    color: var(--error-color);
+    color: var(--color-error);
 }
 
 .text-medium {
@@ -47,7 +47,7 @@
 }
 
 .error-message {
-    color: var(--error-color);
+    color: var(--color-error);
     font-size: 0.75rem;
     margin-top: 0.25rem;
 }
@@ -70,11 +70,11 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-    background-color: var(--primary-hover);
+    background-color: var(--color-primary-dark);
 }
 
 .submit-btn:disabled {
-    background-color: var(--input-border);
+    background-color: var(--color-text-muted);
     cursor: not-allowed;
 }
 
@@ -85,4 +85,78 @@
     width: 1rem;
     height: 1rem;
     animation: spin 1s linear infinite;
+}
+
+.password-label-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-label-wrapper input {
+    flex-grow: 1;
+    padding-right: 40px;
+}
+
+.info-icon {
+    position: absolute;
+    left: 20%;
+    top: 25%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.info-icon:hover {
+    background-color: #c9d7e7;
+}
+
+/* Password Tooltip Styles */
+.password-tooltip {
+    display: block;
+    position: absolute;
+    /* top    : calc(50% + 10px); */
+    right: 0;
+    width: 250px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e0eaf6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.password-tooltip.active {
+    display: block;
+}
+
+.password-tooltip p {
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.password-tooltip ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    color: #555;
+}
+
+.password-tooltip li {
+    padding-left: 0;
+    margin-bottom: 5px;
+    position: relative;
+    font-size: 14px;
 }

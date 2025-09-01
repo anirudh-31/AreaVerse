@@ -1,37 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* :root {
+  --color-bg          : #F2E9E4;  
+  --color-surface     : #FFFFFF; 
+  --color-surface-alt : #FFF9F6;
+
+  --color-text        : #333333;
+  --color-text-light  : #555555;
+  --color-text-muted  : #777777;
+
+  --color-primary     : #E07A5F;  
+  --color-primary-dark: #C75A44;
+
+  --color-border      : #EDEDED;
+  --shadow-soft       : 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-hover      : 0 4px 12px rgba(0, 0, 0, 0.08);
+  --color-success   : #198754;     
+  --color-success-bg: #E6F4EA;
+
+  --color-error   : #DC3545;         
+  --color-error-bg: #FDECEA;
+
+  --color-warning   : #FFC107;       
+  --color-warning-bg: #FFF8E1;
+
+  --color-info   : #0D6EFD;            
+  --color-info-bg: #E7F1FF;
+  
+  --menu-bg      : #fff;
+  --menu-text    : #555;
+  --menu-hover-bg: #f0f0f0;
+} */
+
+/* :root{
+  --color-bg           : #edf2f4;
+  --color-surface      : #FFFFFF;
+  --color-surface-alt  : #777777;
+
+  --color-text         : #000000;
+  --color-text-muted   : #333333;
+  --color-text-light   : #495057;
+
+  --color-primary      : #1E2EDE;
+  --color-primary-dark : #004E98;
+  --color-primary-light: #e6f4ff;
+  --color-border       : #EDEDED;
+  --shadow-soft        : 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-hover       : 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  --color-success      : #198754;     
+  --color-success-bg   : #E6F4EA;
+
+  --color-error        : #DC3545;         
+  --color-error-bg     : #FDECEA;
+
+  --color-warning      : #FFC107;       
+  --color-warning-bg   : #FFF8E1;
+
+  --color-info         : #0D6EFD;            
+  --color-info-bg      : #E7F1FF;
+
+  --menu-bg            : #fff;
+  --menu-text          : #555;
+  --menu-hover-bg      : #f0f0f0;
+} */
 
 :root {
-  --primary-color: #008080;
+  --color-bg           : #E9ECEF;  
+  --color-surface      : #F8F9FA; 
+  --color-surface-alt  : #CED4DA;
 
-  /* Deep Teal */
-  --primary-hover: #006666;
+  --color-text         : #212529;
+  --color-text-light   : #495057;
+  --color-text-muted   : #ADB5BD;
 
-  /* Darker Teal */
-  --secondary-color: #EAD9B8;
+  --color-primary      : #0077cc;
+  --color-primary-dark : #004E98;
+  --color-primary-light: #e6f4ff;
 
-  /* Light Gold */
-  --text-dark: #333333;
+  --color-border       : #ADB5BD;
+  --shadow-soft        : 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-hover       : 0 4px 12px rgba(0, 0, 0, 0.08);
+  --color-success      : #198754;     
+  --color-success-bg   : #E6F4EA;
 
-  /* For primary text */
-  --text-medium: #666666;
+  --color-error        : #DC3545;         
+  --color-error-bg     : #FDECEA;
 
-  /* For secondary text */
-  --background-light: #FDFDFD;
+  --color-warning      : #FFC107;       
+  --color-warning-bg   : #FFF8E1;
 
-  /* For backgrounds and borders */
-  --background-white: #FFFFFF;
-
-  /* For card backgrounds */
-  --error-color: #d9534f;
-  --warning-color: #f0ad4e;
-  --success-color: #5cb85c;
-  --input-border: #d1d5db;
-  --input-focus: #9ca3af;
-
-  /* For menu */
-  --menu-primary-color: #2A2E45;
-  --menu-secondary-color: #CBD3E2;
-  --menu-background-color: #9EADC8;
+  --color-info         : #0D6EFD;            
+  --color-info-bg      : #E7F1FF;
+  
+  --menu-bg            : #fff;
+  --menu-text          : #555;
+  --menu-hover-bg      : #f0f0f0;
 }
 
 * {
@@ -39,26 +103,25 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  background-color: var(--background-light);
-  color: var(--text-dark);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  max-height: 100vh;
   width: 100vw;
 }
 
 .app-layout {
   display: flex;
   flex-direction: column;
-  /* stack Navbar -> Content -> Footer */
   min-height: 100vh;
-  /* full screen height */
 }
 
 @media (min-width: 768px) {
@@ -71,12 +134,11 @@ body {
   flex: 1;
   padding: 1rem;
   display: flex;
+  height: 100vh;
 }
 
 .container {
   width: 100%;
-  max-width: 1280px;
-  /* margin    : 0 auto; */
   padding: 0 1rem;
 }
 

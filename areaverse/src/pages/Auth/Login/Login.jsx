@@ -1,4 +1,4 @@
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeClosed } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,17 +6,20 @@ import { loginUser } from '../../../features/auth/authSlice';
 import LoginRedirectAnimation from '../../../components/LoginRedirectAnimation/LoginRedirectAnimation';
 
 function Login() {
-    const user = useSelector((state) => state.auth.user);
-    const [formData, setFormData] = useState({
+
+    const { loading, error, user } = useSelector((state) => {
+        return state.auth
+    });
+
+    const [userError, setUserError] = useState("");
+    const [formData, setFormData]   = useState({
         userEmail: "",
         userPassword: ""
     })
+
     const [viewPassword, toggleViewPassword] = useState(false);
+
     const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => {
-        return state.auth
-    });
-    
 
     function handleFormDataChange(event) {
         event.preventDefault();
@@ -33,14 +36,31 @@ function Login() {
 
     function handleUserLogin(event) {
         event.preventDefault();
-        dispatch(loginUser({
-            "userEmailOrUserName": formData.userEmail,
-            "password": formData.userPassword
+        const {userEmail, userPassword} = formData;
+        if(formData.userEmail && formData.userPassword){
+            dispatch(loginUser({
+                "userEmailOrUserName": userEmail,
+                "password": userPassword
+                }
+            ));
+        }else if(!userEmail && !userPassword){
+            setUserError("Please enter your credentials.");
+            return;
+        }else if(!userEmail){
+            setUserError("Please enter username or email.");
+            return;
+        }else{
+            setUserError("Please enter your password.");
+            return;
         }
-        ));
-
     }
-
+    useEffect(() => {
+        if(userError?.length > 0){
+            setTimeout(() => {
+                setUserError("")
+            }, 5000) 
+        }
+    }, [userError])
     return (
         <React.Fragment>
             {
@@ -63,7 +83,7 @@ function Login() {
                             </div>
                             <form id="login-form" className="form-content">
                                 <div className="input-group">
-                                    <label htmlFor="email">User name or Email </label>
+                                    <label htmlFor="email">Email or Username</label>
                                     <input type="email" name="userEmail" value={formData.userEmail} id="email" placeholder='you@example.com' onChange={handleFormDataChange} />
                                     <span id="login-email-error" className="error-message"></span>
                                 </div>
@@ -73,7 +93,7 @@ function Login() {
                                     <button type="button" className="password-toggle" onClick={handlePasswordView}>
                                         {
                                             viewPassword ?
-                                                <EyeOff /> :
+                                                <EyeClosed /> :
                                                 <Eye />
 
                                         }
@@ -81,14 +101,18 @@ function Login() {
                                     <span id="login-password-error" className="error-message"></span>
                                 </div>
                                 {
-                                    error && <span className='login-error'>{error}</span>
+                                    error?.length > 0 && <span className='login-error'>{error}</span>
+                                }
+                                {
+                                    userError?.length > 0 && <span className='login-error'>{userError}</span>
                                 }
                                 <button type="submit" className="submit-btn" onClick={handleUserLogin} disabled={loading}>
                                     {
                                         loading ?
                                             <><span className="spinner"></span> Loading...</> :
                                             <>
-                                                Login</>
+                                            Login
+                                            </>
                                     }
                                 </button>
                             </form>

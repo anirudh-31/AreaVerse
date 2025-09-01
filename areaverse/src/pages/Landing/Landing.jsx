@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './Landing.css'
 import { useNavigate } from 'react-router-dom';
-import { MessageCircleMore, Network, Users } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../../features/auth/authSlice';
+import { Handshake, MessageCircleMore, Network, Users } from 'lucide-react';
+
 function Landing() {
   const [title, setTitle] = useState("AreaVerse - Home");
   const navigate = useNavigate();
@@ -12,8 +11,6 @@ function Landing() {
     document.title = title;
   }, [title])
 
-  const user = useSelector((state) => state.auth.user)
-  const dispatch = useDispatch();
 
   function navigateToLoginPage() {
     navigate("/account")
@@ -22,9 +19,6 @@ function Landing() {
     navigate("/")
   }
 
-  function handleLogout() {
-    dispatch(logoutUser())
-  }
 
   return (
     <React.Fragment>
@@ -34,22 +28,18 @@ function Landing() {
             AreaVerse
           </span>
         </div>
-        {
-          user ?
-            <button id="show-auth-btn" className="auth-button" onClick={handleLogout}>
-              Log out
-            </button> :
-            <button id="show-auth-btn" className="auth-button" onClick={navigateToLoginPage}>
-              Log in | Sign up
-            </button>
-        }
+
+        <button id="show-auth-btn" className="auth-button" onClick={navigateToLoginPage}>
+          Join Us
+        </button>
+
       </nav>
       <main id="landing-page" className="main-content">
         <section className="container hero-section">
           <div className="hero-content hero-text-container">
             <h1 className="hero-title">
               {/* Shape Your Community, <span className="highlight">Share Your Voice</span>. Because every street has a story to tell. */}
-              Every street has a story. <span className='highlight'>Lets write it together</span>
+              Every street has a story. <span className='highlight'>Let's write it together.</span>
             </h1>
             <p className="hero-text">
               Share what you love and what needs improvement in your neighborhood. Connect with neighbors and work together to find solutions for local issues.
@@ -64,23 +54,19 @@ function Landing() {
         </section>
 
         <section className="container features-section">
-          <div className="features-header">
-            <h2 className="features-title">Why Use AreaVerse?</h2>
-            <p className="features-subtitle">Discover the features that empower your community.</p>
-          </div>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon-container">
-                <MessageCircleMore />
-              </div>
-              <h3 className="feature-title">Share Feedback</h3>
-              <p className="feature-description">
-                Easily report the pros and cons of your neighborhood, from great parks to street repairs needed.
-              </p>
+                <div className="feature-icon-container">
+                  <MessageCircleMore />
+                </div>
+                <h3 className="feature-title">Share Feedback</h3>
+                <p className="feature-description">
+                  Easily report the pros and cons of your neighborhood, from great parks to street repairs needed.
+                </p>
             </div>
             <div className="feature-card">
               <div className="feature-icon-container">
-                <Network />
+                <Handshake />
               </div>
               <h3 className="feature-title">Collaborate on Solutions</h3>
               <p className="feature-description">
@@ -99,7 +85,7 @@ function Landing() {
           </div>
         </section>
         <footer className="footer">
-          &copy; 2025 AreaVerse. All rights reserved.
+          &copy; 2025 AreaVerse. Built for communities.
         </footer>
       </main>
     </React.Fragment>

@@ -23,10 +23,11 @@ function Signup() {
         area: ""
     })
 
-    const [viewPassword, togglePasswordView] = useState(false);
+    const [showToolTip          , setShowToolTip             ] = useState(false);
+    const [viewPassword         , togglePasswordView         ] = useState(false);
     const [viewConfirmedPassword, toggleConfirmedPasswordView] = useState(false);
-    const [signUpStep, setSignUpStep] = useState(1);
-    const [validationErrors, setValidationErrors] = useState({
+    const [signUpStep           , setSignUpStep              ] = useState(1);
+    const [validationErrors     , setValidationErrors        ] = useState({
         userNameError: "",
         passwordError: "",
         passwordMatchError: "",
@@ -171,8 +172,13 @@ function Signup() {
         }
 
     }, [formData.confirmedPassword, formData.userPassword]);
-
-
+    useEffect(() => {
+        if(showToolTip){
+            setTimeout(() => {
+                setShowToolTip(false);
+            }, 3000);
+        }
+    }, [showToolTip])
     return (
         <React.Fragment>
             {
@@ -195,8 +201,23 @@ function Signup() {
                                                 <span id="signup-email-error" className="error-message"></span>
                                             </div>
                                             <div className="input-group">
-                                                <label htmlFor="signup-password">Password</label>
-                                                <input type={viewPassword ? "text" : "password"} id="signup-password" placeholder="Create a password" onChange={handleSignUpData} name='userPassword' value={formData.userPassword} />
+                                                <div className="password-label-wrapper">
+                                                    <label htmlFor="signup-password">Password</label>
+                                                    <span className="info-icon" id="infoIcon" onClick={() => setShowToolTip(!showToolTip)}>i</span>
+                                                </div>
+                                                {showToolTip && (
+                                                    <div className="password-tooltip">
+                                                        <p>Your password must contain:</p>
+                                                        <ul>
+                                                            <li>At least 8 characters.</li>
+                                                            <li>A number. (0-9)</li>
+                                                            <li>An uppercase letter.</li>
+                                                            <li>A lowercase letter.</li>
+                                                            <li>A special symbol.</li>
+                                                        </ul>
+                                                    </div>
+                                                )}
+                                                <input type={viewPassword ? "text" : "password"} data-tooltip="true" id="signup-password" placeholder="Create a password" onClick={() => setShowToolTip(false)} onChange={handleSignUpData} name='userPassword' value={formData.userPassword} />
                                                 {
                                                     formData.userPassword.length > 0 ?
                                                         <div className="password-strength-container">
@@ -247,8 +268,11 @@ function Signup() {
                                                 <input type="text" id="signup-areaname" placeholder="e.g., Koramangala" name='area' value={formData.area} onChange={handleSignUpData} />
                                                 <span id="signup-areaname-error" className="error-message"></span>
                                             </div>
+                                            {
+                                                error?.length > 0 && <span className='login-error'>{error}</span>
+                                            }
                                             <div className="btn-group">
-                                                <button type="button" className="submit-btn" id="back-step-btn" onClick={(evt) => toggleSignUpStep(evt, 1)} style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)" }} disabled={loading}>Back</button>
+                                                <button type="button" className="submit-btn" id="back-step-btn" onClick={(evt) => toggleSignUpStep(evt, 1)} style={{ backgroundColor: "var(--color-text-muted)", color: "var(--color-text)" }} disabled={loading}>Back</button>
                                                 <button type="submit" className="submit-btn" id="signup-submit-btn" onClick={handleUserSignup} disabled={loading}>
                                                     {
                                                         loading ?

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import './Menu.css';
 import { useNavigate } from 'react-router-dom';
-import { ChartNoAxesCombined, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
+import { Bookmark, ChartNoAxesCombined, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../features/auth/authSlice';
+import SearchBar from '../SearchBar/SearchBar';
 
 function Navbar() {
   const { user } = useSelector((state) => state.auth);
@@ -39,6 +40,12 @@ function Navbar() {
               <span className="nav-link">
                 <ChartNoAxesCombined />
                 Dashboard
+              </span>
+            </li>
+            <li>
+              <span className="nav-link">
+                <Bookmark />
+                Saved Reports
               </span>
             </li>
             <li>
@@ -93,6 +100,12 @@ function Navbar() {
               <span className="mobile-nav-link">
                 <ChartNoAxesCombined />
                 Dashboard
+              </span>
+            </li>
+            <li>
+              <span className="mobile-nav-link">
+                <Bookmark />
+                Saved Reports
               </span>
             </li>
             <li>

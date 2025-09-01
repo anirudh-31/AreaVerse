@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--background-white);
+    background-color: var(--color-bg);
     display: none;
     /* Initially hidden */
     flex-direction: column;
@@ -16,7 +16,7 @@
 #countdown-number {
     font-size: 10rem;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--color-primary);
     transition: all 0.5s ease-in-out;
     transform: translateY(-20px) scale(0.8);
     opacity: 0;
@@ -31,7 +31,7 @@
 #countdown-tagline {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-medium);
+    color: var(--color-text-light);
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.5s ease-in-out;
@@ -43,7 +43,7 @@
     width: 50%;
     max-width: 300px;
     height: 0.5rem;
-    background-color: var(--background-light);
+    background-color: var(--color-surface);
     border-radius: 9999px;
     margin-top: 2rem;
     overflow: hidden;
@@ -54,7 +54,7 @@
 #countdown-progress-bar-fill {
     width: 100%;
     height: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
     transform: translateX(-100%);
     animation: progressBar 3s linear forwards;
 }

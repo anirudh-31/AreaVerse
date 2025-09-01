@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import './Home.css';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 function Home() {
   const [title, setTitle] = useState("AreaVerse - Home");
@@ -11,9 +12,12 @@ function Home() {
   const { user } = useSelector((state) => state.auth)
   return (
     <React.Fragment>
-      <h1 className="hero-title">
-        Welcome, <span className='highlight'>{user.username} !!!</span>
-      </h1>
+      <div className="home-container">
+        <SearchBar />
+        
+      </div>
+      
+      
     </React.Fragment>
   )
 }
