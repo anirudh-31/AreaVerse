@@ -1,15 +1,14 @@
 .header {
-    width           : 100%;
+    /* width           : 100%; */
     padding         : 1rem 2rem;
-    background-color: var(--color-surface);
-    color           : var(--color-text);
-    box-shadow      : var(--shadow-soft);
     position        : sticky;
     top             : 0;
     display         : flex;
     justify-content : space-between;
+    background      : var(--color-bg);
     align-items     : center;
     z-index         : 10;
+    border-bottom   : 1px solid var(--color-border)
 }
 
 .logo-group {
@@ -21,9 +20,10 @@
 
 
 .logo-text {
-    font-size  : 1.5rem;
-    font-weight: 700;
-    cursor     : pointer;
+    font-size     : 1.25rem;
+    font-weight   : 600;
+    letter-spacing: 0.5px;
+    cursor        : pointer;
 }
 
 .auth-button {
@@ -32,7 +32,6 @@
     font-weight  : 400;
     padding      : 0.5rem 1rem;
     border-radius: 0.5rem;
-    box-shadow   : var(--shadow-soft);
     transition   : background 0.3s ease;
     border       : none;
     cursor       : pointer;
@@ -40,10 +39,10 @@
 }
 
 .auth-button:hover {
-    background: var(--color-primary-dark);
+    background: var(--color-primary-light);
 }
 
-.hero-text-container>* {
+.hero-text-container > * {
     transform: translateY(20px);
     opacity  : 0;
     animation: fadeInUp 0.8s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -126,7 +125,7 @@
 }
 
 .hero-cta:hover {
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-primary-light);
     transform       : scale(1.05);
 }
 
@@ -168,7 +167,7 @@
 .features-section {
     margin-top: 4rem;
     background: var(--color-bg);
-    padding   : 3rem 2rem;
+    padding   : 3rem 4rem;
 }
 
 .features-subtitle {
@@ -181,17 +180,19 @@
     margin-bottom        : 1rem;
     display              : grid;
     grid-template-columns: repeat(1, 1fr);
-    gap                  : 2rem;
+    gap                  : 1rem;
+    padding              : 1rem;
 }
 
 .feature-icon-container {
-    display         : flex;
-    align-items     : center;
-    justify-content : center;
+    flex            : 0 0 3rem;
+    display         : grid;
+    place-items     : center;
     height          : 3rem;
     width           : 3rem;
-    border-radius   : 9999px;
-    background-color: var(--color-primary-light);
+    border-radius   : 10px;
+    background      : color-mix(in oklab, var(--color-primary) 12%, transparent);
+    border          : 1px solid color-mix(in oklab, var(--color-primary) 24%, var(--border));
     color           : var(--color-primary);
     margin          : 0 auto 1rem auto;
 }
@@ -217,18 +218,18 @@
 .feature-card {
     transform       : translateY(20px);
     opacity         : 0;
-    background-color: var(--color-surface);
+    background-color: var(--color-surface-alt);
     padding         : 1.5rem;
-    border-radius   : 0.5rem;
-    box-shadow      : 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition      : transform 0.5s ease , box-shadow 0.3s ease !important;
+    border-radius   : var(--card-radius);
+    border          : 1px solid var(--color-border-alt);
+    transition      : transform .2s ease, box-shadow .2s ease !important;
     cursor          : pointer;
-    margin          : 1rem;
+    margin-top      : 1rem;
 }
 
 .feature-card:hover {
-    transform : translateY(-5px) scale(1.01) !important;
-    box-shadow: var(--shadow-hover);
+    transform : translateY(-4px) !important;
+    box-shadow: 0 16px 34px rgba(0,0,0,.08) !important;
 }
 
 .feature-group{
@@ -255,12 +256,10 @@
 
 .footer {
     text-align: center;
-    padding   : 1.25rem;
+    padding   : 1rem;
     font-size : 0.9rem;
     background: var(--color-surface);
-    color     : var(--color-text-light);
-    margin-top: 3rem;
-    border-top: 1px solid var(--color-border);
+    color     : var(--color-text-muted);
 }
 
 @media (min-width: 768px) {
@@ -289,7 +288,7 @@
 
     .feature-title,
     .feature-description {
-        text-align: left;
+        text-align: left;   
     }
 }
 

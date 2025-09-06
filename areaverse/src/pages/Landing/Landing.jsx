@@ -49,7 +49,7 @@ function Landing() {
             </button>
           </div>
           <div className="hero-image-container">
-            <img className="hero-image" src="https://placehold.co/600x400/008080/FFFFFF?text=Logo+Or+AltImage" alt="" />
+            <img className="hero-image" src="https://placehold.co/600x400/070707/FFFFFF?text=Logo+Or+AltImage" alt="" />
           </div>
         </section>
 

@@ -64,7 +64,7 @@ function Navbar() {
         </nav>
         <div className="user-details">
           <div className="avatar">
-            {user.username.charAt(0)}
+            {user.username.charAt(0).toUpperCase()}
           </div>
           <div className="details">
             <p className="name">
@@ -124,7 +124,7 @@ function Navbar() {
           <div className="mobile-nav-user-card">
             <div className="mobile-nav-user-info">
               <div className="mobile-nav-avatar">
-                {user.username.charAt(0)}
+                {user.username.charAt(0).toUpperCase()}
               </div>
               <div className="mobile-nav-user-details">
                 <strong className="mobile-nav-user-name">

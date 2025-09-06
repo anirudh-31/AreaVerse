@@ -1,24 +1,23 @@
 /* Container */
 .profile-card.skeleton {
-    width: 100%;
-    /* max-width: 380px; */
-    margin: 20px auto;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    overflow: hidden;
-    position: relative;
+    width         : 100%;
+    margin        : 20px auto;
+    border-radius : 16px;
+    box-shadow    : 0 4px 12px rgba(0, 0, 0, 0.1);
+    background    : var(--color-surface);
+    overflow      : hidden;
+    position      : relative;
     padding-bottom: 16px;
 }
 
 /* Shimmer base */
 .skeleton * {
     background: linear-gradient(90deg,
-            #e0e0e0 25%,
-            #f0f0f0 50%,
-            #e0e0e0 75%);
+            var(--color-surface) 25%,
+            var(--color-surface-alt) 50%,
+            var(--color--panel) 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
+    animation      : shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
@@ -33,36 +32,36 @@
 
 /* Cover */
 .skeleton-cover {
-    height: 120px;
+    height       : 120px;
     border-radius: 16px 16px 0 0;
 }
 
 /* Avatar */
 .skeleton-avatar {
-    width: 90px;
-    height: 90px;
+    width        : 90px;
+    height       : 90px;
     border-radius: 50%;
-    margin: -45px auto 10px;
-    border: 4px solid white;
-    position: relative;
-    z-index: 2;
+    margin       : -45px auto 10px;
+    border       : 4px solid var(--color-primary);
+    position     : relative;
+    z-index      : 2;
 }
 
 /* Tabs */
 .skeleton-tabs {
-    display: flex;
+    display        : flex;
     justify-content: space-around;
-    margin: 10px 0;
+    margin         : 10px 0;
 }
 
 .skeleton-box {
-    height: 18px;
-    width: 60px;
+    height       : 18px;
+    width        : 60px;
     border-radius: 8px;
 }
 
 .skeleton-box.small {
-    width: 40px;
+    width : 40px;
     height: 16px;
 }
 
@@ -72,9 +71,9 @@
 }
 
 .skeleton-line {
-    height: 16px;
+    height       : 16px;
     border-radius: 8px;
-    margin: 10px 0;
+    margin       : 10px 0;
 }
 
 .skeleton-line.short {
@@ -83,139 +82,168 @@
 
 /* Stats */
 .skeleton-stats {
-    display: flex;
+    display        : flex;
     justify-content: space-around;
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
+    padding        : 10px 0;
+    border-top     : 1px solid var(--color-border);
 }
 
 /* Button */
 .skeleton-button {
-    width: 80%;
-    height: 40px;
+    width        : 80%;
+    height       : 40px;
     border-radius: 8px;
-    margin: 15px auto 0;
+    margin       : 15px auto 0;
 }
 
 .profile-container {
-    padding: 20px;
-    flex-grow: 1;
+    padding   : 20px;
+    flex-grow : 1;
     overflow-y: auto;
 }
 
 .profile-header {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    margin-bottom: 24px;
+    background     : var(--color-surface);
+    padding        : 40px;
+    border-radius  : 12px;
+    box-shadow     : 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align     : center;
+    margin-bottom  : 24px;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
 }
 
 .profile-initials-large {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #eee;
-    color: #777;
-    font-weight: 600;
-    font-size: 48px;
-    display: inline-flex;
+    width          : 96px;
+    height         : 96px;
+    border-radius  : 50%;
+    background     : var(--color-border);
+    color          : #777;
+    font-weight    : bold;
+    font-size      : 32px;
+    display        : inline-flex;
     justify-content: center;
+    align-items    : center;
+    margin-bottom  : 12px;
+    color          : var(--color-text);
+    border         : 3px solid var(--color-primary);
+}
+
+
+.profile-name-section{
+    display    : flex;
     align-items: center;
-    margin-bottom: 12px;
+    gap        : 4px;
+}
+
+.profile-name-section > svg {
+    color: var(--color-primary);
 }
 
 .profile-name {
     font-weight: 600;
-    font-size: 28px;
-    margin: 0;
-    color: #1a1a1a;
+    font-size  : 28px;
+    margin     : 0;
+    color      : var(--color-text);
 }
 
 .profile-username {
     font-size: 16px;
-    color: #888;
-    margin: 4px 0 0;
+    color    : var(--color-text-muted);
+    margin   : 4px 0 0;
 }
 
 .profile-content {
-    background-color: #fff;
-    padding: 24px;
+    background   : var(--color-surface);
+    padding      : 24px;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow   : 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .profile-tabs {
-    display: flex;
-    gap: 16px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 24px;
+    display        : flex;
+    justify-content: space-around;
+    gap            : 16px;
+    border-bottom  : 1px solid var(--color-border);
+    margin         : 20px 0;
+    position       : relative;
+    align-items    : center;
 }
 
 .profile-tab {
-    padding: 12px 0;
+    flex       : 1;
+    padding    : 12px 0;
     font-weight: 500;
-    color: #888;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.2s;
+    color      : var(--color-text-muted);
+    cursor     : pointer;
+    position   : relative;
+    transition : color 0.2s;
 }
 
 .profile-tab:hover {
-    color: #1a1a1a;
+    color: var(--color-text);
 }
 
 .profile-tab.active {
-    color: #1a1a1a;
+    color: var(--color-text);
 }
 
 .profile-tab.active::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -1px;
-    width: 100%;
-    height: 2px;
-    background-color: #1a1a1a;
+    content         : '';
+    position        : absolute;
+    left            : 0;
+    bottom          : -1px;
+    width           : 100%;
+    height          : 2px;
+    background-color: var(--color-primary);
 }
 
 .profile-details {
-    display: grid;
+    display              : grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    gap                  : 24px;
 }
 
 .detail-item {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.detail-item:last-child {
-    border-bottom: none;
+    padding-bottom: 10px;
+    gap           : 4px;
+    border-bottom : 1px solid var(--color-border);
 }
 
 .detail-label {
-    font-size: 14px;
-    color: #888;
+    font-size    : 16px;
+    color        : var(--color-text-muted);
     margin-bottom: 4px;
+    display      : flex;
+    align-items  : center;
+    gap          : 4px;
+}
+
+.detail-label > svg {
+    height: 16px;
+    width : 16px;
 }
 
 .detail-value {
-    font-size: 16px;
+    font-size  : 18px;
     font-weight: 400;
-    color: #1a1a1a;
+    color      : var(--color-text);
 }
 
 .profile-stats {
-    display: flex;
+    display        : flex;
     justify-content: space-around;
-    padding: 24px 0;
-    margin-top: 24px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    padding        : 24px 0;
+    margin-top     : 24px;
+    border-top     : 1px solid var(--color-border);
+    border-bottom  : 1px solid var(--color-border);
+    flex           : 1;
+    gap            : 1rem;
+    width          : 100%;
 }
 
 .stat-item {
@@ -223,33 +251,33 @@
 }
 
 .stat-number {
-    font-size: 24px;
+    font-size  : 24px;
     font-weight: 600;
-    color: #1a1a1a;
+    color      : var(--color-text);
     line-height: 1;
 }
 
 .stat-label {
     font-size: 14px;
-    color: #888;
+    color    : #888;
 }
 
 .edit-button {
-    width: 100%;
-    padding: 16px;
-    background-color: #1a1a1a;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 24px;
-    transition: background-color 0.2s;
+    width           : 100%;
+    padding         : 16px;
+    background-color: var(--color-primary);
+    color           : #fff;
+    border          : none;
+    border-radius   : 8px;
+    font-size       : 16px;
+    font-weight     : 500;
+    cursor          : pointer;
+    margin-top      : 24px;
+    transition      : background-color 0.2s;
 }
 
 .edit-button:hover {
-    background-color: #333;
+    background-color: var(--color-primary-light);
 }
 
 /* --- Media Queries for responsiveness --- */
@@ -264,8 +292,8 @@
     
 
     .profile-initials-large {
-        width: 80px;
-        height: 80px;
+        width    : 80px;
+        height   : 80px;
         font-size: 36px;
     }
 
@@ -273,15 +301,11 @@
         padding: 16px;
     }
 
-    /* Make profile tabs vertical */
-    .profile-tabs {
-        flex-direction: column;
-        gap: 0;
-    }
+    
 
     .profile-tab {
-        text-align: center;
-        border-bottom: 1px solid #eee;
+        text-align   : center;
+        border-bottom: 1px solid var(--color-border);
     }
 
     .profile-tab:last-child {
@@ -289,9 +313,9 @@
     }
 
     .profile-tab.active::after {
-        left: 50%;
+        left     : 50%;
         transform: translateX(-50%);
-        width: 40px;
+        width    : 40px;
     }
 
     /* Stack profile details */
@@ -301,8 +325,7 @@
 
     /* Stack stats */
     .profile-stats {
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
+        gap           : 16px;
+        align-items   : center;
     }
 }

@@ -14,6 +14,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute/PublicRoute";
 import ProtectedLayout from "./components/ProtectedLayout/ProtectedLayout";
 import MyProfile from "./pages/MyProfile/MyProfile";
+import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
+import PasswordResetRequest from "./pages/PasswordResetRequest/PasswordResetRequest";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,8 +27,20 @@ const router = createBrowserRouter([
       ),
   },
   {
+    path   : "/verify-email",
+    element: <VerifyEmail />
+  },
+  {
     path: "/account",
     element: (<Auth />)
+  },
+  {
+    path: "/request-passoword-reset",
+    element: <PasswordResetRequest />
+  },
+  {
+    path: "/reset-password",
+    element: <ResetPassword />
   },
   {
     element: <ProtectedRoute redirect="/"/>,

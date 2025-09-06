@@ -30,7 +30,7 @@ function Auth() {
                 </button>
                 
             </nav>
-            <div className="auth-page centered-container">
+            <div className="auth-page">
                 <div className="auth-container">
                     <div className="form-toggle">
                         <button className={`toggle-btn ${authMode === "login" ? 'active' : ""}`} onClick={() => toggleAuthMode("login")}>
@@ -47,9 +47,6 @@ function Auth() {
                     }
                 </div>
             </div>
-            <footer className="footer">
-                &copy; 2025 AreaVerse. Built for communities.
-            </footer>
         </React.Fragment>
     )
 }

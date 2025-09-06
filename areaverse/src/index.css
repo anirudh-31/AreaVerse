@@ -65,7 +65,7 @@
   --menu-hover-bg      : #f0f0f0;
 } */
 
-:root {
+/* :root {
   --color-bg           : #E9ECEF;  
   --color-surface      : #F8F9FA; 
   --color-surface-alt  : #CED4DA;
@@ -79,8 +79,9 @@
   --color-primary-light: #e6f4ff;
 
   --color-border       : #ADB5BD;
-  --shadow-soft        : 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-soft        : 0 2px  6px rgba(0, 0, 0, 0.05);
   --shadow-hover       : 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover-dark  : 0 8px 16px rgba(0, 0, 0, 0.1);
   --color-success      : #198754;     
   --color-success-bg   : #E6F4EA;
 
@@ -96,6 +97,82 @@
   --menu-bg            : #fff;
   --menu-text          : #555;
   --menu-hover-bg      : #f0f0f0;
+} */
+
+/* :root {
+  --color-bg           : #F9FAFB;  
+  --color-surface      : #F3F4F6; 
+  --color-surface-alt  : #CED4DA;
+
+  --color-text         : #374151;
+  --color-text-light   : #495057;
+  --color-text-muted   : #6B7280;
+
+  --color-primary      : #2563EB;
+  --color-primary-dark : #1D4ED8;
+  --color-primary-light: #93C5FD;
+  --color-primary-alt  : #1E40AF;
+
+  --color-border       : #E5E7EB;
+  --shadow-soft        : 0 2px  6px rgba(0, 0, 0, 0.05);
+  --shadow-hover       : 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover-dark  : 0 8px 16px rgba(0, 0, 0, 0.1);
+  --color-success      : #198754;     
+  --color-success-bg   : #E6F4EA;
+
+  --color-error        : #DC3545;         
+  --color-error-bg     : #FDECEA;
+
+  --color-warning      : #FFC107;       
+  --color-warning-bg   : #FFF8E1;
+
+  --color-info         : #0D6EFD;            
+  --color-info-bg      : #E7F1FF;
+  
+  --menu-bg            : #fff;
+  --menu-text          : #555;
+  --menu-hover-bg      : #f0f0f0;
+} */
+
+:root{
+  --color-bg           : #0d0d0d;  
+  --color-surface      : #1a1a1a; 
+  --color-surface-alt  : #0f1318;
+  --color--panel       : #141414;;
+  --color-glass        : rgba(255, 255, 255, 0.02);
+  
+  --color-text         : #e6e6e6;
+  --color-text-light   : #999;
+  --color-text-muted   : #9aa3ac;
+
+  --color-primary      : #ff6b00;
+  --color-primary-dark : #f97316;
+  --color-primary-light: #fb923c;
+  --color-primary-alt  : #1E40AF;
+
+  --color-border       : #2a2a3a;
+  --color-border-alt   : #1c2128;
+
+  --shadow-soft        : 0 2px  6px rgba(0, 0, 0, 0.05);
+  --shadow-hover       : 0 10px 30px rgba(0,0,0,0.6);
+  --shadow-hover-dark  : 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  --color-success      : #388E3C;     
+  --color-success-bg   : #4CAF50;
+  
+  --card-radius        : 14px;
+  --color-error        : #FF4C4C;         
+  --color-error-bg     : #FDECEA;
+
+  --color-warning      : #E68900;       
+  --color-warning-bg   : #FF9800;
+
+  --color-info         : #0D6EFD;            
+  --color-info-bg      : #E7F1FF;
+  
+  --menu-bg            : #fff;
+  --menu-text          : #555;
+  --menu-hover-bg      : #f0f0f0;
 }
 
 * {
@@ -103,25 +180,26 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  -webkit-font-smoothing: antialiased;
+  /* font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family            : "Inter", sans-serif;
+  font-optical-sizing    : auto;
+  -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
-  width: 100vw;
+  overflow-x             : hidden;
+  background-color       : var(--color-bg);
+  color                  : var(--color-text);
+  margin                 : 0;
+  padding                : 0;
+  display                : flex;
+  flex-direction         : column;
+  max-height             : 100vh;
+  width                  : 100vw;
 }
 
 .app-layout {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height    : 100vh;
 }
 
 @media (min-width: 768px) {
@@ -131,31 +209,35 @@ body {
 }
 
 .app-layout main {
-  flex: 1;
+  flex   : 1;
   padding: 1rem;
   display: flex;
-  height: 100vh;
+  height : 100vh;
 }
 
 .container {
-  width: 100%;
+  width  : 100%;
   padding: 0 1rem;
 }
 
 .centered-container {
-  display: flex;
-  align-items: center;
+  display        : flex;
+  align-items    : center;
   justify-content: center;
 }
 
 .flex-center {
-  display: flex;
-  align-items: center;
+  display        : flex;
+  align-items    : center;
   justify-content: center;
 }
 
 .flex-between {
-  display: flex;
-  align-items: center;
+  display        : flex;
+  align-items    : center;
   justify-content: space-between;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(50%) ;
 }

@@ -4,13 +4,16 @@ import './Login.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../../features/auth/authSlice';
 import LoginRedirectAnimation from '../../../components/LoginRedirectAnimation/LoginRedirectAnimation';
-
+import Google from '../../../assets/google-icon.svg'
+import Facebook  from '../../../assets/facebook-icon.svg'
+import { useNavigate } from 'react-router-dom';
 function Login() {
 
+    const navigate = useNavigate();
     const { loading, error, user } = useSelector((state) => {
         return state.auth
     });
-
+    const [authError, setAuthError] = useState('');
     const [userError, setUserError] = useState("");
     const [formData, setFormData]   = useState({
         userEmail: "",
@@ -60,65 +63,73 @@ function Login() {
                 setUserError("")
             }, 5000) 
         }
-    }, [userError])
+        if(authError?.length > 0){
+            setTimeout(() => {
+                setAuthError("")
+            }, 5000) 
+        }
+    }, [userError, authError])
+
+    useEffect(() => {
+        if(error?.length > 0){
+            setAuthError(error)
+        }
+    }, [error])
     return (
         <React.Fragment>
             {
                 user ?
-                    <LoginRedirectAnimation /> :
-                    <div className="auth-card">
-                        <div className="auth-form-content">
-                            <div className="social-buttons">
-                                <button className="social-button">
-                                    <svg viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="#000000"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"></path><path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"></path><path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"></path><path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335"></path></g></svg>
-                                    Continue with Google
-                                </button>
-                                <button className="social-button">
-                                    <svg fill="#1877f2" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M1168.737 487.897c44.672-41.401 113.824-36.889 118.9-36.663l289.354-.113 6.317-417.504L1539.65 22.9C1511.675 16.02 1426.053 0 1237.324 0 901.268 0 675.425 235.206 675.425 585.137v93.97H337v451.234h338.425V1920h451.234v-789.66h356.7l62.045-451.233H1126.66v-69.152c0-54.937 14.214-96.112 42.078-122.058" fillRule="evenodd"></path> </g></svg>
-                                    Continue with Facebook
-                                </button>
-                            </div>
-                            <div className="divider">
-                                <span>Or</span>
-                            </div>
-                            <form id="login-form" className="form-content">
-                                <div className="input-group">
-                                    <label htmlFor="email">Email or Username</label>
-                                    <input type="email" name="userEmail" value={formData.userEmail} id="email" placeholder='you@example.com' onChange={handleFormDataChange} />
-                                    <span id="login-email-error" className="error-message"></span>
-                                </div>
-                                <div className="input-group">
-                                    <label htmlFor="login-password">Password</label>
-                                    <input type={viewPassword ? "text" : "password"} id="login-password" name="userPassword" value={formData.userPassword} onChange={handleFormDataChange} placeholder="Enter your password" />
-                                    <button type="button" className="password-toggle" onClick={handlePasswordView}>
-                                        {
-                                            viewPassword ?
-                                                <EyeClosed /> :
-                                                <Eye />
-
-                                        }
-                                    </button>
-                                    <span id="login-password-error" className="error-message"></span>
-                                </div>
-                                {
-                                    error?.length > 0 && <span className='login-error'>{error}</span>
-                                }
-                                {
-                                    userError?.length > 0 && <span className='login-error'>{userError}</span>
-                                }
-                                <button type="submit" className="submit-btn" onClick={handleUserLogin} disabled={loading}>
-                                    {
-                                        loading ?
-                                            <><span className="spinner"></span> Loading...</> :
-                                            <>
-                                            Login
-                                            </>
-                                    }
-                                </button>
-                            </form>
-
-                        </div>
+                <LoginRedirectAnimation />:
+                <div className="auth-form">
+                    <div className="input-group">
+                        <input type="text" id="loginUsername" name='userEmail' value={formData.userEmail} required placeholder="" onChange={handleFormDataChange}/>
+                        <label htmlFor="loginUsername">Username / Email</label>
                     </div>
+                    <div className="input-group password-wrapper">
+                        <input type={viewPassword ? 'text' : 'password'} name='userPassword' value={formData.userPassword} id="loginPassword" required placeholder=" " onChange={handleFormDataChange}/>
+                        <label htmlFor="loginPassword">Password</label>
+                        <span className="toggle-password" data-target="loginPassword" onClick={handlePasswordView}>
+                            {
+                                viewPassword ?
+                                <EyeClosed /> :
+                                <Eye />
+                            }
+                        </span>
+                        
+                    </div>
+                    <span className='forgot-password' onClick={() => navigate("/request-passoword-reset")}>
+                        Forgot Password?
+                    </span>
+                    {
+                        authError?.length > 0 && <span className='login-error'>{authError}</span>
+                    }
+                    {
+                        userError?.length > 0 && <span className='login-error'>{userError}</span>
+                    }
+                    <button  className="submit-btn" onClick={handleUserLogin} disabled={loading}>
+                        {
+                            loading ?
+                                <><span className="spinner"></span> Loading...</> :
+                                <>
+                                    Login
+                                </>
+                        }
+                    </button>
+                    <div className="divider">
+                        <span>Or Use</span>
+                    </div>
+                    <div className="social-buttons">
+                        <button className="social-button">
+                            <img src={Google} alt="Continue with google" />
+                             Google
+                        </button>
+                        <button className="social-button">
+                            <img src={Facebook} alt="Continue with facebook" />
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+                
             }
         </React.Fragment>
     )
