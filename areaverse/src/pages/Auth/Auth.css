@@ -4,9 +4,7 @@
     flex-direction : column;
     align-items    : center;
     justify-content: center;
-    padding        : 4rem 1rem;
-    /* margin         : 4rem auto; */
-   
+    padding        : 4rem 1rem;   
 }
 
 .auth-container {
@@ -16,7 +14,7 @@
     background      : var(--color-surface);
     border-radius   : 1rem;
     text-align      : center;
-    /* margin          : 4rem; */
+    border          : 1px solid var(--color-border);
 }
 
 

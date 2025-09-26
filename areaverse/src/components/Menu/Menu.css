@@ -1,6 +1,6 @@
 .desktop-menu {
     background     : var(--color-surface);
-    padding        : 1.5rem;
+    padding        : 1.25rem;
     display        : none;
     flex-direction : column;
     justify-content: space-between;
@@ -16,6 +16,16 @@
     font-weight   : 700;
     color         : var(--color-primary);
     letter-spacing: 1px;
+}
+
+.nav-options{
+    display        : flex;
+    justify-content: space-between;
+}
+
+.mobile-navbar .nav-options{
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav {
@@ -85,8 +95,8 @@
 }
 
 .nav-link:hover {
-    background-color: #222;
-    color           : var(--color-primary)
+    background-color: var(--color-border);
+    color           : var(--color-primary);
 }
 
 .mobile-nav-container {
@@ -190,8 +200,8 @@
 }
 
 .mobile-nav-link:hover{
-    background: #222;
-    color     : var(--color-primary)
+    background-color: var(--color-border);
+    color           : var(--color-primary);
 }
 
 .mobile-nav-user-card {

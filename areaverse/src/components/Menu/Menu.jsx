@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './Menu.css';
 import { useNavigate } from 'react-router-dom';
-import { Bookmark, ChartNoAxesCombined, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
+import { Bookmark, ChartNoAxesCombined, FileWarning, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../features/auth/authSlice';
 import SearchBar from '../SearchBar/SearchBar';
+import ThemeToggler from '../ThemeToggler/ThemeToggler';
 
 function Navbar() {
   const { user } = useSelector((state) => state.auth);
@@ -25,9 +26,12 @@ function Navbar() {
   return (
     <React.Fragment>
       <aside className="desktop-menu" id="desktop-menu">
-        <span className="desktop-menu-logo" onClick={() => navigate("/")}>
-          AreaVerse
-        </span>
+        <div className="nav-options">
+          <span className="desktop-menu-logo" onClick={() => navigate("/")}>
+            AreaVerse
+          </span>
+          <ThemeToggler />
+        </div>
         <nav className="nav">
           <ul>
             <li>
@@ -54,6 +58,15 @@ function Navbar() {
                 Profile
               </span>
             </li>
+            {
+              user.role === 'ADMIN' &&
+              <li>
+                <span className="nav-link"  onClick={() => navigate("/review-reports")}>
+                  <FileWarning/>
+                  Review reports
+                </span>
+              </li>
+            }
             <li>
               <span className="nav-link" onClick={handleUserLogOut}>
                 <LogOut />
@@ -83,9 +96,13 @@ function Navbar() {
             <span></span>
             <span></span>
           </div>
-          <span className="mobile-menu-logo" onClick={() => navigate("/")}>
-            AreaVerse
-          </span>
+          <div className="nav-options">
+            <ThemeToggler />
+            <span className="mobile-menu-logo" onClick={() => navigate("/")}>
+              AreaVerse
+            </span>
+            
+          </div>
         </div>
 
         <div className={`mobile-dropdown ${displayMobileMenu ? 'show' : ''}`}>
@@ -114,6 +131,15 @@ function Navbar() {
                 Profile
               </span>
             </li>
+            {
+              user.role === 'ADMIN' &&
+               <li>
+                <span className="mobile-nav-link" onClick={() => navigateTo("/review-reports")}>
+                  <FileWarning />
+                  Review reports
+                </span>
+              </li>
+            }
             <li>
               <span className="mobile-nav-link" onClick={handleUserLogOut}>
                 <LogOut />

@@ -1,39 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import './Landing.css'
 import { useNavigate } from 'react-router-dom';
-import { Handshake, MessageCircleMore, Network, Users } from 'lucide-react';
+import { ArrowRight, Handshake, MessageCircleMore, Users } from 'lucide-react';
+import Header from '../../components/Header/Header';
 
 function Landing() {
   const [title, setTitle] = useState("AreaVerse - Home");
-  const navigate = useNavigate();
-
+  const navigate          = useNavigate();
+  
   useEffect(() => {
     document.title = title;
   }, [title])
-
-
   function navigateToLoginPage() {
-    navigate("/account")
-  }
-  function navigateToHomePage() {
-    navigate("/")
+      navigate("/account")
   }
 
 
   return (
     <React.Fragment>
-      <nav className="header">
-        <div className="logo-group">
-          <span className="logo-text" onClick={navigateToHomePage}>
-            AreaVerse
-          </span>
-        </div>
-
-        <button id="show-auth-btn" className="auth-button" onClick={navigateToLoginPage}>
-          Join Us
-        </button>
-
-      </nav>
+      <Header />
       <main id="landing-page" className="main-content">
         <section className="container hero-section">
           <div className="hero-content hero-text-container">
@@ -45,7 +30,10 @@ function Landing() {
               Share what you love and what needs improvement in your neighborhood. Connect with neighbors and work together to find solutions for local issues.
             </p>
             <button className="hero-cta" onClick={navigateToLoginPage}>
-              Start sharing
+              Share your story
+              <div className="hero-cta-icon">
+                <ArrowRight />
+              </div>
             </button>
           </div>
           <div className="hero-image-container">

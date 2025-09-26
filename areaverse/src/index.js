@@ -17,6 +17,11 @@ import MyProfile from "./pages/MyProfile/MyProfile";
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
 import PasswordResetRequest from "./pages/PasswordResetRequest/PasswordResetRequest";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import { ThemeProvider } from "./features/Context/ThemeContext";
+import CommunityPostForm from "./pages/CommunityPostForm/CommunityPostForm";
+import ViewReport from "./pages/Report/ViewReport";
+import ReviewReport from "./pages/ReviewReports/ReviewReport";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,8 +53,11 @@ const router = createBrowserRouter([
       {
         element: <ProtectedLayout />,
         children: [
-          {path: "/home", element: <Home />},
-          {path: "/me"  , element: <MyProfile />}
+          { path: "/home"            , element: <Home />             },
+          { path: "/me"              , element: <MyProfile />        },
+          { path: "/create-report"   , element: <CommunityPostForm />},
+          { path: "/report/:reportId", element: <ViewReport/>        },
+          { path: "/review-reports"  , element: <ReviewReport/>     }
         ]
       }
     ]
@@ -60,7 +68,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

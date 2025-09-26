@@ -3,130 +3,89 @@ import './MyProfile.css';
 import { formatDate, stringToGradient } from '../../utils/CommonFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from '../../features/user/userSlice';
-import { BadgeCheck, BadgeX, BriefcaseBusiness, Cake, CalendarPlus, Mail, MapPinned } from 'lucide-react';
+import { BadgeCheck, BadgeX, BriefcaseBusiness, Cake, CalendarPlus, Mail, MapPinned, Pencil, PlusIcon } from 'lucide-react';
+import ProfileDetails from './ProfileDetails';
+import UserPosts from './UserPosts';
 function MyProfile() {
 
-    const { userDetails, loading, error } = useSelector((state) => state.user);
+    const { userDetails, loading, error }            = useSelector((state) => state.user);
+    const { user }                                   = useSelector((state) => state.auth)
     const [ profileEditMode , toggleProfileEditMode] = useState(false);
-    const dispatch = useDispatch();
+    const dispatch                                   = useDispatch();
+    const [activeTab, setActiveTab]                  = useState('profile');
+    const [isEditModalOpen, setEditModalOpen]        = useState(false);
 
     useEffect(() => {
         dispatch(getUserProfile())
     }, [dispatch]);
 
     if (loading) return (
-        <div className="profile-card skeleton">
-            {/* Cover */}
-            <div className="skeleton-cover" />
-
-            {/* Avatar */}
-            <div className="skeleton-avatar" />
-
-            {/* Tabs */}
-            <div className="skeleton-tabs">
-                <div className="skeleton-box" />
-                <div className="skeleton-box" />
-                <div className="skeleton-box" />
+        <div className="profile-card">
+            <div className="profile-header"></div>
+            <div className="profile-core">
+                <div className="avatar-wrapper">
+                    <div className="profile-avatar skeleton" style={{borderRadius: '50%'}}></div>
+                </div>
+                <div className="skeleton" style={{ height: '28px', width: '200px', marginBottom: '0.5rem' }}></div>
+                <div className="skeleton" style={{ height: '16px', width: '150px', marginBottom: '1.5rem' }}></div>
+                <div className="profile-stats">
+                    <div className="stat-item"><div className="skeleton" style={{ height: '20px', width: '30px', margin: '0 auto 0.25rem' }}></div><div className="skeleton" style={{ height: '14px', width: '50px', margin: '0 auto' }}></div></div>
+                    <div className="stat-item"><div className="skeleton" style={{ height: '20px', width: '30px', margin: '0 auto 0.25rem' }}></div><div className="skeleton" style={{ height: '14px', width: '60px', margin: '0 auto' }}></div></div>
+                    <div className="stat-item"><div className="skeleton" style={{ height: '20px', width: '30px', margin: '0 auto 0.25rem' }}></div><div className="skeleton" style={{ height: '14px', width: '60px', margin: '0 auto' }}></div></div>
+                </div>
             </div>
-
-            {/* Details */}
-            <div className="skeleton-details">
-                <div className="skeleton-line" />
-                <div className="skeleton-line" />
-                <div className="skeleton-line" />
-                <div className="skeleton-line short" />
-            </div>
-
-            {/* Stats */}
-            <div className="skeleton-stats">
-                <div className="skeleton-box small" />
-                <div className="skeleton-box small" />
-                <div className="skeleton-box small" />
-            </div>
-
-            {/* Button */}
-            <div className="skeleton-button" />
+            <div className="profile-tabs"><div className="tab-btn"></div><div className="tab-btn"></div></div>
+            <div className="tab-content"></div>
         </div>
     );
 
     if (error) return <div className="p-4">No user data found.</div>;
     return (
         <React.Fragment>
-            <div className="profile-container">
-                <div className="profile-header">
-                    <div className="profile-initials-large">{userDetails?.username.charAt(0).toUpperCase()}</div>
-                    <div className="profile-name-section">
-                        <h1 className="profile-name">{userDetails?.first_name} {userDetails?.last_name}</h1>
-                        {
-                            userDetails?.isVerified ? 
-                            <BadgeCheck /> :
-                            <BadgeX />
-                        }
-                    </div>
-                    <p className="profile-username">@{userDetails?.username}</p>
-                    <div className="profile-stats">
-                        <div className="stat-item">
-                            <div className="stat-number">00</div>
-                            <div className="stat-label">Posts</div>
+            <div className="profile-page-container">
+                <div className="profile-card">
+                    <div className="profile-header"/>
+                    <div className="profile-core">
+                        <div className="avatar-wrapper">
+                            <div className="profile-avatar">{userDetails?.first_name.charAt(0).toUpperCase()}</div>
                         </div>
-                        <div className="stat-item">
-                            <div className="stat-number">00</div>
-                            <div className="stat-label">Followers</div>
+                        <h1 className="user-name">{userDetails?.first_name} {userDetails?.last_name}</h1>
+                        <p className="user-handle">@{userDetails?.username}</p>
+                        <div className="profile-stats">
+                            <div className="stat-item">
+                                <div className="stat-number">
+                                    {
+                                        userDetails?.postCount.length > 1 ?
+                                        userDetails?.postCount :
+                                        '0'.concat(userDetails?.postCount)
+                                    }
+                                </div>
+                                <div className="stat-label">Posts</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">00</div>
+                                <div className="stat-label">Followers</div>
+                            </div>
+                            <div className="stat-item">
+                                <div className="stat-number">00</div>
+                                <div className="stat-label">Following</div>
+                            </div>
                         </div>
-                        <div className="stat-item">
-                            <div className="stat-number">00</div>
-                            <div className="stat-label">Following</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="profile-content">
-                    <div className="profile-tabs">
-                        <div className="profile-tab active">Profile</div>
-                        <div className="profile-tab">Posts</div>
-                    </div>
-
-                    <div className="profile-details">
-                        <div className="detail-item">
-                            <span className="detail-label">
-                                <BriefcaseBusiness />
-                                Profession
-                            </span>
-                            <span className="detail-value">{userDetails?.profession || "--"}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">
-                                <Mail/>
-                                E-mail
-                            </span>
-                            <span className="detail-value">{userDetails?.email}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">
-                                <Cake />
-                                Date of Birth
-                            </span>
-                            <span className="detail-value">{formatDate(userDetails?.dateOfBirth)}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">
-                                <CalendarPlus />
-                                Member Since
-                            </span>
-                            <span className="detail-value">{formatDate(userDetails?.createdAt)}</span>
-                        </div>
-                        <div className="detail-item">
-                            <span className="detail-label">
-                                <MapPinned />
-                                Neighborhood
-                            </span>
-                            <span className="detail-value">{userDetails?.neighborhood.name}, {userDetails?.neighborhood.city} - {userDetails?.neighborhood.state}</span>
+                        <div className="profile-actions">
+                            {
+                               ( userDetails?.id !== user.id) &&< button className="action-btn"><PlusIcon /> Follow</button>
+                            }
+                            <button className="action-btn" onClick={() => setEditModalOpen(true)}><Pencil /> Edit Profile</button>
                         </div>
                     </div>
-
-                    
-
-                    <button className="edit-button">Edit Profile</button>
+                    <nav className="profile-tabs">
+                        <button className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`} onClick={() => setActiveTab('profile')}>Profile</button>
+                        <button className={`tab-btn ${activeTab === 'posts' ? 'active' : ''}`} onClick={() => setActiveTab('posts')}>Posts</button>
+                    </nav>
+                    <div className="tab-content">
+                        {activeTab === 'profile' && <ProfileDetails user={userDetails} />}
+                        {activeTab === 'posts' && <UserPosts   />}
+                    </div>
                 </div>
             </div>
         </React.Fragment>
