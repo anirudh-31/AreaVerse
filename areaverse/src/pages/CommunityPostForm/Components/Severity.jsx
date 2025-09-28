@@ -2,9 +2,9 @@ import React from 'react'
 
 function Severity({data, update, prev, next}) {
   const options = [
-        { value: 'Low'   , icon: '🟢' },
-        { value: 'Medium', icon: '🟠' },
-        { value: 'High'  , icon: '🔴' }
+        { value: 'Low'     , icon: '🟢' },
+        { value: 'Medium'  , icon: '🟠' },
+        { value: 'Critical', icon: '🔴' }
     ];
   return (
     <div className="form-step active">

@@ -1,4 +1,4 @@
-import { Bookmark, Heart, MessageCircle, Share2 } from 'lucide-react'
+import { Bookmark, Heart, MessageCircle, Share2, Tag, TriangleAlert } from 'lucide-react'
 import React from 'react'
 import ImageCarousel from './ImageCarousel'
 import { timeAgo } from '../../../utils/CommonFunctions'
@@ -11,7 +11,7 @@ function Report({ postData }) {
     return (
         <div className='content-fade-in'>
             {
-                (user.role === 'ADMIN' && (postData.status === 'REPORTED' || postData.status === 'UNDER_REVIEW')) &&
+                (user.role === 'ADMIN' && (postData.status === 'REPORTED' || postData.status === 'UNDER_REVIEW' || postData.status == 'UPDATED')) &&
                 <ReviewPanel id={postData.id}/>
             }
            
@@ -27,11 +27,18 @@ function Report({ postData }) {
                 </div>
                 {
                     (user.role == 'ADMIN' || user.id === postData.user?.id ) &&
-                    <ReportStatusBar history={postData.histories}/>
+                    <ReportStatusBar history={postData.histories} creator={postData.user?.id}/>
                 }
                 <div className="report-card-content">
                     <div className="report-body">
                         <h2 className="report-title">{postData.title || ''}</h2>
+                        <div className="post-tags">
+                             <div className="post-tags">
+                                {postData?.severity && <span className={`tag tag-severity-${postData?.severity?.toLowerCase()}`}><TriangleAlert /> {postData?.severity}</span>}
+                                {postData?.category && <span className="tag tag-category"><Bookmark /> {postData?.category}</span>}
+                                {postData?.type     && <span className="tag tag-type"><Tag /> {postData?.type}</span>}
+                            </div>
+                        </div>
                         <p>
                             {
                                 postData.description

@@ -4,7 +4,7 @@ function Review({ data, submit, prev }) {
   const podIcons = {
     postType: { Issue: '🚨', Query: '❓', Review: '🌟' },
     category: { Road: '🛣️', Infrastructure: '🏗️', Waste: '🗑️', Animals: '🐾' },
-    severity: { High: '🔴', Medium: '🟠', Low: '🟢' }
+    severity: { Critical: '🔴', Medium: '🟠', Low: '🟢' }
   };
 
   return (

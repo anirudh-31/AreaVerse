@@ -3,9 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import ReviewActionModal from './ReviewActionModal';
 import ActionLoader from './ActionLoader';
 import api from '../../../api/axios';
+import { useDispatch } from 'react-redux';
+import { retrievePost } from '../../../features/post/postSlice';
 
 function ReviewPanel({id}) {
   const navigate                      = useNavigate();
+  const dispatch                      = useDispatch();
   const [ modalState, setModalState ] = useState({ isOpen: false, mode: null });
   const [ isUpdating, setIsUpdating ] = useState({ action: null, updating: false});
   const handleOpenModal               = (mode) => setModalState({ isOpen: true, mode: mode });
@@ -30,7 +33,9 @@ function ReviewPanel({id}) {
       setIsUpdating({
         action: null,
         updating: false
-      })
+      });
+      dispatch(retrievePost(id))
+      
     } catch (error){
       console.log(error)
     }

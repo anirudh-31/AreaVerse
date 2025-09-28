@@ -435,7 +435,7 @@
     border-color: var(--color-success); 
 }
 
-.severity-pod-High { 
+.severity-pod-Critical { 
     border-color: var(--color-error); 
 }
 .severity-pod-Medium { 

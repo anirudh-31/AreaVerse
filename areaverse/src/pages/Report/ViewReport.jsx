@@ -5,6 +5,7 @@ import { retrievePost } from '../../features/post/postSlice';
 import './ViewReport.css';
 import SkeletonLoader from './Components/SkeletonLoader';
 import Report from './Components/Report';
+import UpdateLoader from './Components/UpdateLoader';
 function ViewReport() {
   const { reportId } = useParams();
   const dispatch     = useDispatch();
@@ -16,7 +17,6 @@ function ViewReport() {
       dispatch(retrievePost(reportId));
     }
   }, [reportId])
-
   function renderContent(){
     if(retrieving){
       return <SkeletonLoader />

@@ -37,6 +37,25 @@ export const createNewPost = createAsyncThunk(
     }
 )
 
+export const updatePost = createAsyncThunk(
+    "post/updateReport",
+    async ({ postId, title, description, images }, { rejectWithValue }) => {
+        try {
+            const response = await api.patch(`${POST_BASE}/${postId}`, {
+                title,
+                description,
+                images
+            })
+            return response.data;
+        } catch (error) {
+             return rejectWithValue({
+                error : error.response?.data.error,
+                status: error.response?.status
+            }) || { error: "Failed to update report"}
+        }
+    }
+)
+
 export const retrievePost = createAsyncThunk(
     "post/retrievePost",
     async (postId, {rejectWithValue}) => {
@@ -80,6 +99,8 @@ const postSlice = createSlice({
         imageUploadError  : null,
         retieveError      : null,
         retieveReviewError: null,
+        updating          : false,
+        updateError       : null,
     },
     reducers: {
         resetPostState(state) {
@@ -92,6 +113,8 @@ const postSlice = createSlice({
             state.error            = null;
             state.imageUploadError = null;
             state.retieveError     = null;
+            state.updating         = false;
+            state.updateError      = null;
         }
     },
     extraReducers: (builder) => {
@@ -150,6 +173,19 @@ const postSlice = createSlice({
         .addCase(fetchReviewReports.rejected, (state, action) => {
             state.retrievingReview   = false;
             state.retieveReviewError = action.payload
+        })
+        // start retrieving reports for review.
+        .addCase(updatePost.pending, (state, action) => {
+            state.updating = true;
+        })
+        // complete retrieving reports for review
+        .addCase(updatePost.fulfilled, (state, action) => {
+            state.updating = false;
+        })
+        // failure during report retrieval
+        .addCase(updatePost.rejected, (state, action) => {
+            state.updating = false;
+            state.updating = action.payload
         })
     }
 })

@@ -6,7 +6,7 @@
 .search-container > .search-button{
     padding         : 0.75rem 1.5rem;
     background-color: var(--color-surface);
-    border          : 1px solid var(--glass-border);
+    border          : 1px solid var(--form-border-color);
     border-radius   : 999px;
     color           : var(--color-text);
     font-size       : 1rem;
@@ -95,6 +95,7 @@
 }
 
 .search-overlay > .search-interface{
+    opacity         : 0 ;
     position        : absolute;
     top             : 50%;
     left            : 50%;
@@ -102,22 +103,35 @@
     max-width       : 500px;
     transform       : translate(-50%, -50%);
     background-color: var(--color-surface);
+    border          : 1px solid var(--border-color);
     border-radius   : var(--card-radius);
-    padding         : 10px;
     box-sizing      : border-box;
     display         : flex;
-    align-items     : center;
-    justify-content : center;
-    gap             : 10px;
+    flex-direction  : column;
     transform-origin: top left;
-    opacity         : 0 ;
+    transition      : max-height 0.4s ease;
+    max-height      : 60px;
+    overflow        : hidden;
+
 }
-.search-interface.is-animating {
-    transition: all 0.4s cubic-bezier(0.5, 0, 0.1, 1);
+.search-overlay >.search-interface.is-animating {
+    transition: all 0.4s cubic-bezier(0.5, 0, 0.1, 1), max-height 0.4s ease, opacity 0.2s;
 }
-.search-overlay > .search-interface > select,
-.search-overlay > .search-interface > input,
-.search-overlay > .search-interface > button{
+.search-overlay > .search-interface.has-results {
+     max-height: 70vh; 
+}
+.search-overlay > .search-interface > .search-controls {
+    display    : flex;
+    align-items: center;
+    gap        : 0.625rem;
+    padding    : 0.625rem;
+    width      : 100%;
+    box-sizing : border-box;
+    flex-shrink: 0;
+}
+.search-overlay > .search-interface > .search-controls > select,
+.search-overlay > .search-interface > .search-controls > input,
+.search-overlay > .search-interface > .search-controls > button{
     background: none;
     border    : none;
     color     : var(--color-text);
@@ -127,28 +141,164 @@
     box-sizing: border-box;
 }
 
-.search-overlay > .search-interface > select {
+.search-overlay > .search-interface > .search-controls > select {
     background-color: var(--color-surface-alt);
     border-radius   : 5px;
     flex-shrink     : 0;
 }
-.search-overlay > .search-interface > input {
+.search-overlay > .search-interface > .search-controls > input {
     flex-grow: 1;
     min-width: 0;
     outline  : none;
 }
 
-.search-overlay > .search-interface > button{
-    background-color: var(--color-surface-alt);
+.search-overlay > .search-interface > .search-controls > button{
+    background-color: var(--color-primary-alt);
     border-radius   : 20px;
     padding         : 8px 20px;
     cursor          : pointer;
     flex-shrink     : 0;
 }
 
-.search-overlay > .search-interface > .close-btn {
-        background: none;
-        font-size : 20px;
-        padding   : 0 10px;
-        cursor    : pointer;
-    }
+.search-overlay > .search-interface > .search-controls > .close-btn {
+    background: none;
+    font-size : 20px;
+    padding   : 0 10px;
+    cursor    : pointer;
+}
+
+.search-overlay > .search-interface > .search-results-list {
+    width     : 100%;
+    padding   : 0 10px 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    flex-grow : 1;
+}
+
+.search-overlay > .search-interface > .search-results-list > div > .result-item{
+    display         : flex;
+    align-items     : center;
+    background-color: var(--color-surface-alt);
+    padding         : 1rem;
+    border-radius   : var(--card-radius);
+    margin-bottom   : 0.625rem;
+    color           : var(--color-text);
+    gap             : 1rem;
+    cursor          : pointer;
+    transition      : background-color 0.4s cubic-bezier(.17,.67,.16,.67);
+}
+.search-overlay > .search-interface > .search-results-list > div > .result-item:hover{
+    background-color: var(--color-glass);
+}
+.search-overlay > .search-interface > .search-results-list > div > .result-item:hover > .result-avatar {
+    background-color: var(--color-surface);
+}
+.search-overlay > .search-interface > .search-results-list > div > .result-item > .result-avatar {
+    background-color: var(--color-glass);
+    width           : 3.25rem;
+    height          : 3.25rem;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    border-radius   : var(--card-radius);
+    transition      : background-color 0.4s cubic-bezier(.17,.67,.16,.67);
+}
+
+.search-overlay > .search-interface > .search-results-list > div > .result-item > .result-info {
+    line-height: 1.4;
+}
+
+.search-overlay > .search-interface > .search-results-list > div > .result-item > .result-info > .result-title{
+    color  : var(--color-text);
+    display: block;
+}
+
+.search-overlay > .search-interface > .search-results-list > div > .result-item > .result-info > .result-subtitle{
+    font-size : 0.9rem;
+    margin-top: 2px;
+}
+.result-category {
+    background-color: var(--color-info);
+    color           : white;
+    font-size       : 10px;
+    padding         : 2px 6px;
+    border-radius   : 4px;
+    margin-left     : 8px;
+    vertical-align  : middle;
+}
+
+.search-overlay > .search-interface > .search-results-list > div > .result-item > .result-info > .result-meta{
+    font-size : 0.75rem;
+    font-style: italic;
+    color     : var(--text-muted);
+    margin-top: 0.5rem;
+}
+.search-results-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-results-list::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius   : 4px;
+    border          : 2px solid var(--color-surface);
+}
+
+.search-results-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-alt);
+    cursor: pointer;
+}
+.skeleton-item {
+    display         : flex;
+    align-items     : center;
+    background-color: var(--color-surface-alt);
+    padding         : 15px;
+    border-radius   : var(--card-radius);
+    margin          : 10px;
+}
+
+.skeleton-avatar {
+    width           : 50px;
+    height          : 50px;
+    border-radius   : 8px;
+    background-color: var(--color-glass);
+    margin-right    : 15px;
+}
+
+.skeleton-text-group {
+    flex-grow: 1;
+}
+
+.skeleton-text {
+    height          : 1em;
+    background-color: var(--color-glass);
+    border-radius   : 4px;
+}
+
+.skeleton-text.title {
+    width        : 40%;
+    margin-bottom: 8px;
+}
+
+.skeleton-text.subtitle {
+    width: 60%;
+}
+
+.skeleton-item > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-item>div::after {
+    content   : '';
+    position  : absolute;
+    top       : 0;
+    left      : -100%;
+    width     : 100%;
+    height    : 100%;
+    background: linear-gradient(90deg, transparent, var(--color-panel), transparent);
+    animation : shimmer 1.5s infinite linear;
+}

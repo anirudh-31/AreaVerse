@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './SearchBar.css'
 import { Search } from 'lucide-react'
-import SearchModal from './SearchModal';
+import SearchModal from './components/SearchModal';
 import { triggerHaptic } from '../../utils/CommonFunctions';
 function SearchBar() {
   const [showSearchModal, toggleSearchModal] = useState(false);
@@ -15,6 +15,7 @@ function SearchBar() {
 
     if (showSearchModal) {
       // FLIP Animation: Opening
+      triggerHaptic('light');
       const startRect = searchBtnRef.current.getBoundingClientRect();
       const endRect = searchInterface.getBoundingClientRect();
 

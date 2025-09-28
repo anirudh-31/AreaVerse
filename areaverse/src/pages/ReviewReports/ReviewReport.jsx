@@ -19,7 +19,7 @@ function ReviewReport() {
     }else {
         dispatch(fetchReviewReports({
             pageId: pageNumber, 
-            pageSize: 10
+            pageSize: 5
         }));
     }
   }, [user])

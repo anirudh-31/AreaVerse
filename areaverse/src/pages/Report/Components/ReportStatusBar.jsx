@@ -1,22 +1,27 @@
 import React, { useState } from 'react'
 import { formatToISTTimeStamp, timeAgo } from '../../../utils/CommonFunctions';
-import { CheckIcon, ChevronRightIcon, SearchIcon, ThumbsDownIcon, ThumbsUpIcon,  Plus } from 'lucide-react';
+import { CheckIcon, ChevronRightIcon, SearchIcon, ThumbsDownIcon, ThumbsUpIcon,  Plus, Pencil } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import ReportUpdateCard from './ReportUpdateCard';
 
-function ReportStatusBar({ history }) {
-
+function ReportStatusBar({ history, creator }) {
+    const { user } = useSelector(state => state.auth);
+    
     const STATUS_CONFIG = {
-    'REPORTED'        : { icon: <CheckIcon />     , color: 'var(--color-success)', actionActor: 'USER' , actionText: ' submitted the report.'      , actionColor: 'var(--color-primary)'    },
-    'UNDER_REVIEW'    : { icon: <SearchIcon />    , color: 'var(--color-info)'   , actionActor: 'ADMIN', actionText: ' started reviewing.'         , actionColor: 'var(--color-primary-alt)'},
-    'MORE_INFO_NEEDED': { icon: <Plus />          , color: 'var(--color-warning)', actionActor: 'ADMIN', actionText: ' requested more information.', actionColor: 'var(--color-primary-alt)'},
-    'APPROVED'        : { icon: <ThumbsUpIcon />  , color: 'var(--color-success)', actionActor: 'ADMIN', actionText: ' rejected the report.'       , actionColor: 'var(--color-primary-alt)'},
-    'REJECTED'        : { icon: <ThumbsDownIcon />, color: 'var(--color-error)'  , actionActor: 'ADMIN', actionText: ' approved the report.'       , actionColor: 'var(--color-primary-alt)'},
-};
+        'REPORTED'        : { icon: <CheckIcon />     , color: 'var(--color-success)', actionActor: 'USER' , actionText: ' submitted the report.'      , actionColor: 'var(--color-primary)'    },
+        'UNDER_REVIEW'    : { icon: <SearchIcon />    , color: 'var(--color-info)'   , actionActor: 'ADMIN', actionText: ' started reviewing.'         , actionColor: 'var(--color-primary-alt)'},
+        'MORE_INFO_NEEDED': { icon: <Plus />          , color: 'var(--color-warning)', actionActor: 'ADMIN', actionText: ' requested more information.', actionColor: 'var(--color-primary-alt)'},
+        'UPDATED'         : { icon: <Pencil/>         , color: 'var(--color-success)', actionActor: 'USER' , actionText: ' updated the report'         , actionColor: 'var(--color-primary)'    },
+        'APPROVED'        : { icon: <ThumbsUpIcon />  , color: 'var(--color-success)', actionActor: 'ADMIN', actionText: ' rejected the report.'       , actionColor: 'var(--color-primary-alt)'},
+        'REJECTED'        : { icon: <ThumbsDownIcon />, color: 'var(--color-error)'  , actionActor: 'ADMIN', actionText: ' approved the report.'       , actionColor: 'var(--color-primary-alt)'},
+    };
     const [isOpen, setIsOpen] = useState(false);
 
     if (!history || history.length === 0) return null;
 
     const currentStatusEntry = history[history.length - 1];
-    const currentConfig = STATUS_CONFIG[currentStatusEntry.status] || {};
+    const currentConfig      = STATUS_CONFIG[currentStatusEntry.status] || {};
+    const isActionRequired   = currentStatusEntry.status === 'MORE_INFO_NEEDED' && creator == user?.id;
   return (
       <div className="collapsible-tracker">
           <div className="status-header" onClick={() => setIsOpen(!isOpen)}>
@@ -39,9 +44,6 @@ function ReportStatusBar({ history }) {
                               <span className="timeline-avatar"  style={{ backgroundColor: config.actionColor }}>
                                 {config.actionActor.charAt(0).toUpperCase()}
                               </span>
-                              <div className="timeline-avatar-icon" style={{ backgroundColor: config.color }}>
-                                  {config.icon}
-                              </div>
                               <div className="timeline-content">
                                   <p className="log-title">{config.actionActor} <span style={{ color: 'var(--color-text-muted)', fontWeight: 400 }}>{config['actionText']}</span></p>
                                   <p className="log-timestamp">{formatToISTTimeStamp(item.createdAt)}</p>
@@ -54,6 +56,9 @@ function ReportStatusBar({ history }) {
                           </li>
                       );
                   })}
+                  {
+                    isActionRequired && <ReportUpdateCard adminMessage={currentStatusEntry?.message}/>
+                  }
               </ol>
           </div>
       </div>
