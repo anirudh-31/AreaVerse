@@ -12,8 +12,8 @@ function ReportStatusBar({ history, creator }) {
         'UNDER_REVIEW'    : { icon: <SearchIcon />    , color: 'var(--color-info)'   , actionActor: 'ADMIN', actionText: ' started reviewing.'         , actionColor: 'var(--color-primary-alt)'},
         'MORE_INFO_NEEDED': { icon: <Plus />          , color: 'var(--color-warning)', actionActor: 'ADMIN', actionText: ' requested more information.', actionColor: 'var(--color-primary-alt)'},
         'UPDATED'         : { icon: <Pencil/>         , color: 'var(--color-success)', actionActor: 'USER' , actionText: ' updated the report'         , actionColor: 'var(--color-primary)'    },
-        'APPROVED'        : { icon: <ThumbsUpIcon />  , color: 'var(--color-success)', actionActor: 'ADMIN', actionText: ' rejected the report.'       , actionColor: 'var(--color-primary-alt)'},
-        'REJECTED'        : { icon: <ThumbsDownIcon />, color: 'var(--color-error)'  , actionActor: 'ADMIN', actionText: ' approved the report.'       , actionColor: 'var(--color-primary-alt)'},
+        'APPROVED'        : { icon: <ThumbsUpIcon />  , color: 'var(--color-success)', actionActor: 'ADMIN', actionText: ' approved the report.'       , actionColor: 'var(--color-primary-alt)'},
+        'REJECTED'        : { icon: <ThumbsDownIcon />, color: 'var(--color-error)'  , actionActor: 'ADMIN', actionText: ' rejected the report.'       , actionColor: 'var(--color-primary-alt)'},
     };
     const [isOpen, setIsOpen] = useState(false);
 

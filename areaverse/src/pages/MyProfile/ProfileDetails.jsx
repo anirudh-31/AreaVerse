@@ -8,7 +8,7 @@ function ProfileDetails({user}) {
         {Object.entries({
             'Profession': { icon: <BriefcaseBusiness />, value: user?.profession || '-'},
             'E-mail': { icon: <Mail />, value: user?.email },
-            'Date of Birth': { icon: <Cake />, value: user?.dateOfBirth || '-' },
+            'Date of Birth': { icon: <Cake />, value: formatDate(user?.dateOfBirth) || '-' },
             'Member Since': { icon: <CalendarPlus />,  value: formatDate(user?.createdAt) },
             Neighborhood: { icon: <MapPin />, value: `${user?.neighborhood.name}, ${user?.neighborhood.city} - ${user?.neighborhood.state}` , fullWidth: true },
         }).map(([label, data], index) => (

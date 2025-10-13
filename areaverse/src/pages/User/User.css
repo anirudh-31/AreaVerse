@@ -1,0 +1,428 @@
+.user-page{
+    color          : var(--color-text);
+    height         : 100%;
+    width          : 100%;
+    overflow-y     : auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-alt) transparent;
+    background     : var(--color-surface) ;
+    border         : 1px solid var(--glass-border);
+    border-radius  : var(--card-radius);
+}
+
+.user-page::-webkit-scrollbar {
+    width: 8px; 
+}
+.user-page::-webkit-scrollbar-track { 
+    background: transparent; 
+}
+
+
+.user-page > .user-page-header {
+    position: absolute;
+    top     : 1rem;
+    left    : 1rem;
+    z-index : 10;
+
+}
+
+.user-page > .user-page-content > .user-banner {
+    height               : 10.25rem;
+    /* background-image     : linear-gradient(45deg, #2a2a72, #009ffd); */
+    background-image     : linear-gradient(45deg, var(--color-primary-alt), var(--color-primary));
+    background-blend-mode: overlay;
+}
+
+.user-page > .user-page-content > .user-profile-details{
+    padding      : 0 20px;
+    position     : relative;
+    text-align   : center;
+    margin-bottom: 30px;
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-avatar {
+    width           : 150px;
+    height          : 150px;
+    margin          : 0 auto;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    margin-top      : -75px;
+    font-size       : 5rem;
+    background-color: var(--color-surface-alt);
+    border-radius   : 50%;
+    border          : 4px solid var(--color-primary);
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-name{
+    font-size  : 2rem;
+    font-weight: bold;
+    margin     : 20px 0 5px;
+    display    : inline-flex;
+    align-items: center;
+    gap        : 0.625rem;
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-username {
+    color    : var(--color-text-muted);
+    margin   : 0 0 15px;
+    font-size: 1rem;
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-actions {
+    margin-top     : 1.25rem;
+    display        : flex;
+    justify-content: center;
+    gap            : 1rem;
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-actions > .follow-user{
+    background-color: var(--color-primary-alt);
+    color           : white;
+    border          : none;
+    border-radius   : var(--card-radius);
+    padding         : 12px 35px;
+    font-size       : 1rem;
+    font-weight     : bold;
+    cursor          : pointer;
+    transition      : all 0.2s ease-in;
+}
+.user-page > .user-page-content > .user-profile-details > .user-profile-actions > .follow-user:hover{
+    background-color: var(--color-info); 
+    transform       : translateY(-2px); 
+    box-shadow      : 0 4px 15px rgba(108, 99, 255, 0.4);
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-stats {
+    display        : flex;
+    justify-content: center;
+    gap            : 2.5rem;
+    margin-top     : 1.5rem;
+}
+.user-page > .user-page-content > .user-profile-details > .user-profile-stats > div{
+    text-align: center;
+}
+
+.user-page > .user-page-content > .user-profile-details > .user-profile-stats > div > span {
+    font-size: 14px;
+    color    : var(--color-text-muted)
+}
+.shuffle-number {
+    display        : flex;
+    justify-content: center;
+    font-size      : 1rem;
+    line-height    : 1.1em;
+    font-weight    : bold;
+}
+
+.shuffle-number .comma {
+    line-height: 1.1em;
+}
+
+.digit-column {
+    height  : 1.1em;
+    overflow: hidden;
+    display : inline-block;
+}
+
+.digit-reel {
+    display: inline-block;
+    transform: translateY(0);
+}
+
+.shuffle-number.play .digit-reel {
+    animation: shuffle 1.5s var(--delay, 0s) cubic-bezier(0.68, -0.55, 0.27, 1.55) 1 forwards;
+}
+
+.digit-reel .digit {
+    display: block;
+    height: 1.1em;
+}
+
+@keyframes shuffle {
+    100% {
+        transform: translateY(var(--final-y));
+    }
+}
+
+.user-page > .user-page-content > .profile-info-card{
+    background-color: var(--color-bg);
+    border-radius   : var(--card-radius);
+    padding         : 1.5rem;
+    margin          : 40px 20px 0;
+    border          : 1px solid #4a5068;
+}
+
+.user-page > .user-page-content > .profile-info-card > .info-card-header{
+    font-size     : 18px;
+    font-weight   : bold;
+    color         : var(--color-text);
+    margin        : 0 0 25px;
+    padding-bottom: 20px; 
+    border-bottom : 1px solid var(--glass-border);
+    display       : flex;
+    align-items   : center;
+    gap           : 0.625rem;
+}
+
+.user-page > .user-page-content > .profile-info-card > .info-card-header > .info-card-header-icon{
+    background     : var(--color-surface); 
+    width          : 2rem;
+    height         : 2rem;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    border-radius  : 0.25rem;
+}
+.user-page > .user-page-content > .profile-info-card > .info-card-header svg { 
+    stroke    : var(--color-primary); 
+}
+
+.user-page > .user-page-content > .profile-info-card > .profile-info-grid{
+    display              : grid; 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap                  : 25px; 
+    text-align           : left;
+}
+
+.user-page > .user-page-content > .profile-info-card > .profile-info-grid > .info-item > strong{
+    display  : block;
+    color    : var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.user-page > .user-page-content > .profile-grid-header{
+    font-size     : 1.5rem;
+    color         : var(--color-text);
+    margin        : 40px 20px 20px;
+    text-align    : left;
+    padding-bottom: 1rem;
+    border-bottom : 1px solid var(--glass-border);
+}
+
+.user-page > .user-page-content > .user-page-posts-grid{
+    display              : grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap                  : 0.5rem;
+    padding              : 1.25rem;
+}
+
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item{
+    background-color: var(--color-glass);
+    aspect-ratio    : 1 / 1;
+    border-radius   : 0.5rem;
+    overflow        : hidden;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    /* padding         : 0.625rem; */
+    position        : relative;
+    opacity         : 0; 
+    transform       : translateY(20px);
+    transition      : opacity 0.5s ease, transform 0.5s ease; 
+    cursor          : pointer;
+}
+
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item > img{
+    object-fit   : cover;
+    width        : 100%; 
+    height       : 100%; 
+    border-radius: 0.5rem;
+}
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item > .post-grid-item-overlay{
+    position  : absolute; 
+    bottom    : 0; 
+    left      : 0; 
+    right     : 0; 
+    padding   : 20px 10px 10px; 
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); 
+    opacity   : 0; 
+    transition: opacity 0.3s; 
+}
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item:hover > .post-grid-item-overlay { 
+    opacity: 1; 
+}
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item.visible{
+    transform: translateY(0);
+    opacity  : 1; 
+}
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item > .post-grid-item-text { 
+    font-size  : 14px; 
+    color      : var(--color-text-muted); 
+    text-align : center; 
+    line-height: 1.4; 
+}
+.user-page > .user-page-content > .user-page-posts-grid > .post-grid-item:hover > .post-grid-item-overlay > .post-grid-item-title{
+    color      : white; 
+    font-weight: bold; 
+    font-size  : 14px; 
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); 
+}
+.profile-posts-empty-state {
+    padding   : 60px 40px;
+    text-align: center;
+    color     : var(--color-text-muted);
+    margin    : 0 auto;
+}
+
+.empty-state-icon {
+    font-size    : 48px;
+    margin-bottom: 20px;
+    opacity      : 0.5;
+}
+
+.profile-empty-state h3 {
+    color    : var(--color-text);
+    font-size: 20px;
+    margin   : 0 0 10px;
+}
+
+.profile-empty-state p {
+    margin     : 0;
+    line-height: 1.5;
+}
+
+.follow-button {
+    position        : relative;
+    margin-top      : 1rem;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    width           : 10rem;
+    height          : 3.25rem;
+    font-weight     : 600;
+    font-size       : 1rem;
+    border-radius   : 9999px;
+    border          : 2px solid var(--glass-border);
+    background-color: var(--color-glass);
+    color           : var(--color-text);
+    cursor          : pointer;
+    transition      : all 0.2s ease-in-out, border-color 0.5s;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden; 
+}
+
+.follow-button:focus-visible{
+    outline       : 2px solid var(--color-primary-alt);
+    outline-offset: 2px;
+}
+.follow-button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.follow-button:disabled {
+    cursor: wait;
+}
+
+.follow-button > .button-content{
+    position   : relative;
+    z-index    : 2;
+    display    : flex;
+    align-items: center;
+    transition : opacity 0.3s ease-in-out;
+}
+
+.follow-button > .button-content > svg {
+    width       : 1.25rem;
+    height      : 1.25rem;
+    margin-right: 0.5rem;
+    stroke-width: 2.5;
+}
+
+.follow-button > .liquid-wave{
+    position  : absolute;
+    top       : 0;
+    left      : 100%;
+    width     : 100%;
+    height    : 100%;
+    background: linear-gradient(90deg, var(--color-primary-alt), var(--color-primary-alt-dark));
+    z-index   : 1;
+    transform : translateX(-101%);
+    transition: transform 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+@keyframes wave {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.follow-button.is-loading > .liquid-wave {
+    background-size: 400% 100%;
+    animation      : wave 2s linear infinite;
+}
+.follow-button.is-loading > .button-content {
+    opacity: 0;
+}
+
+.follow-button.is-following {
+    border-color: var(--color-primary-alt-dark);
+}
+.follow-button.is-following > .liquid-wave {
+    transform: translateX(0);
+}
+.follow-button.is-following > .button-content {
+    color: var(--color-text);
+}
+
+.follow-button.is-following:not(.is-loading):hover .liquid-wave {
+    background: var(--color-error );
+}
+.follow-button.is-following:not(.is-loading):hover .text-following,
+.follow-button.is-following:not(.is-loading):hover .icon-check {
+    display: none;
+}
+.follow-button.is-following:not(.is-loading):hover .text-unfollow,
+.follow-button.is-following:not(.is-loading):hover .icon-unfollow {
+    display: inline-block;
+}
+
+.text-unfollow, .icon-unfollow {
+    display: none;
+}
+
+.notification {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--color-glass);
+    border: 1px solid var(--glass-border);
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 99;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s cubic-bezier(0.83, 0, 0.17, 1), opacity 0.5s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.notification.is-visible {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.notification.success .icon-wrapper {
+    color: var(--color-success);
+}
+
+.notification.error .icon-wrapper {
+    color: var(--color-error);
+}
+
+.notification .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification .icon-wrapper svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+}

@@ -29,6 +29,7 @@
 --color-primary-dark : #F97316;
 --color-primary-light: #fb923c;
 --color-primary-alt  : #3b82f6;
+--color-primary-alt-dark: #0055CC;
 
 /* Borders */
 --color-border       : rgba(51, 65, 85, 0.5);
@@ -63,7 +64,7 @@
   --color-bg           : #f1f5f9;
 --color-surface      : #ffffff;
 --color-surface-alt  : #e2e8f0;
---color-panel        : #ffffff;
+--color-panel        : #EEF0F2;
 --color-glass        : rgba(255, 255, 255, 0.7);
 
 /* Typography */
@@ -76,7 +77,7 @@
 --color-primary-dark : #F97316;
 --color-primary-light: #fb923c;
 --color-primary-alt  : #3b82f6;
-
+--color-primary-alt-dark: #0055CC;
 /* Borders */
 --color-border       : rgba(203, 213, 225, 0.5);
 --color-border-alt   : rgba(203, 213, 225, 0.3);

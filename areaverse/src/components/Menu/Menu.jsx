@@ -3,8 +3,6 @@ import './Menu.css';
 import { useNavigate } from 'react-router-dom';
 import { Bookmark, ChartNoAxesCombined, FileWarning, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../../features/auth/authSlice';
-import SearchBar from '../SearchBar/SearchBar';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 
 function Navbar() {
@@ -15,9 +13,6 @@ function Navbar() {
 
   function handleMobileMenuDisplay() {
     toggleMobileMenuDisplay(!displayMobileMenu)
-  }
-  function handleUserLogOut() {
-    dispatch(logoutUser())
   }
   function navigateTo(link) {
     toggleMobileMenuDisplay(!displayMobileMenu);
@@ -68,7 +63,7 @@ function Navbar() {
               </li>
             }
             <li>
-              <span className="nav-link" onClick={handleUserLogOut}>
+              <span className="nav-link" onClick={() => navigateTo("/logout")}>
                 <LogOut />
                 Log out
               </span>
@@ -141,7 +136,7 @@ function Navbar() {
               </li>
             }
             <li>
-              <span className="mobile-nav-link" onClick={handleUserLogOut}>
+              <span className="mobile-nav-link" onClick={() => navigateTo("/logout")}>
                 <LogOut />
                 Log out
               </span>

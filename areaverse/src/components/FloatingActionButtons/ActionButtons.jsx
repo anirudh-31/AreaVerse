@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ActionButtons.css'
 import { triggerHaptic } from '../../utils/CommonFunctions';
-import { Calendar, FunnelPlus, Siren, SquarePen, Users } from 'lucide-react';
+import { Calendar, FunnelPlus, Plus, Siren, SquarePen, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 function ActionButtons() {
     const [isDialOpen, setIsDialOpen] = useState(false);
@@ -33,7 +33,8 @@ function ActionButtons() {
                 title="Create Post"
                 onClick={handleCreateClick}
             >
-                <SquarePen />
+                {/* <SquarePen /> */}
+                <Plus />
             </button>
         </div>
     )

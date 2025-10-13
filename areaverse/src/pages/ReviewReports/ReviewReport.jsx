@@ -5,6 +5,7 @@ import './ReviewReport.css'
 import { fetchReviewReports } from '../../features/post/postSlice';
 import ReviewReports from './components/ReviewReports';
 import ReviewReportSkeleton from './components/ReviewReportSkeleton';
+import ReportPaginator from './components/ReportPaginator';
 function ReviewReport() {
   const [ pageState, setPageState ]          = useState('');
   const { user }                             = useSelector(state => state.auth);
@@ -12,26 +13,29 @@ function ReviewReport() {
   const [ pageNumber, setPageNumber]         = useState(1);
   const dispatch                             = useDispatch();
 
+  const nextPage = (page) => { setPageNumber(page); }
+  
 
+  
   useEffect(() => {
     if(user.role !== 'ADMIN'){
         setPageState('error')
     }else {
         dispatch(fetchReviewReports({
             pageId: pageNumber, 
-            pageSize: 5
+            pageSize: 4
         }));
     }
-  }, [user])
+  }, [user, pageNumber])
 
   function renderPage(){
     if (pageState === 'error'){
         return <AccessDenied />
-    } if (postsForReview){
-        return <ReviewReports reports={postsForReview?.posts}/> 
     } if(retrievingReview){
       return <ReviewReportSkeleton />
-    }
+    }if (postsForReview){
+        return <ReviewReports reports={postsForReview?.posts} pageNumber={pageNumber} handlePageNumber={nextPage} totalPages={postsForReview?.pagination?.totalPages}/> 
+    } 
   }
   
   return (
@@ -39,6 +43,7 @@ function ReviewReport() {
         {
             renderPage()
         }
+        <ReportPaginator currentPage={pageNumber} totalPages={postsForReview?.pagination?.totalPages} nextPage={nextPage} />
     </div>
   )
 }

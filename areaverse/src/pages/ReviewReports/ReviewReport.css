@@ -4,6 +4,7 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width   : none; 
     overflow: scroll;
+    padding: 1rem;
 }
 
 .error-container {
@@ -62,7 +63,7 @@
     border-radius   : 0.75rem;
     padding         : 1.25rem;
     border-left     : 4px solid var(--color-primary);
-    box-shadow      : var(--shadow-hover);
+    box-shadow      : var(--shadow-soft);
     transition      : transform 0.2s ease, box-shadow 0.2s ease;
     cursor          : pointer;
 }
@@ -129,4 +130,107 @@
 .review-skeleton-ribbon {
     height: 96px;
     border-radius: 0.75rem;
+}
+
+.report-paginator {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    gap            : 1rem;
+    margin-top: 1rem;
+}
+
+.report-paginator > .report-paginator-pages {
+    list-style-type : none;
+    display         : flex;
+    align-items     : center;
+    padding         : 6px;
+    margin          : 0;
+    background-color: #2D3748;
+    border-radius   : 50px;
+    border          : 1px solid #4A5568;
+    overflow        : hidden;
+}
+
+.report-paginator-page .report-page-link {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    width           : 36px;
+    height          : 36px;
+    padding         : 0;
+    margin          : 0 2px;
+    color           : #A0AEC0;
+    text-decoration : none;
+    border          : none;
+    border-radius   : 50%;
+    background-color: transparent;
+    transition      : background-color 0.2s, color 0.2s;
+    user-select     : none;
+    font-weight     : 500;
+    cursor              : pointer;
+}
+
+.report-paginator-page:not(.disabled) .report-page-link:hover {
+    background-color: #4A5568;
+    color           : #ffffff;
+}
+
+.report-paginator-page.active .report-page-link {
+    background-color: #4299E1;
+    color           : white;
+    font-weight     : bold;
+}
+
+.report-paginator-page.disabled .report-page-link {
+    color         : #718096;
+    pointer-events: none;
+}
+
+.pagination-arrow {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    width           : 44px;
+    height          : 44px;
+    background-color: #2D3748;
+    border          : 1px solid #4A5568;
+    border-radius   : 50%;
+    cursor          : pointer;
+    transition      : transform 0.2s, background-color 0.2s;
+}
+
+.pagination-arrow:hover {
+    transform       : scale(1.1);
+    background-color: #4A5568;
+}
+
+.pagination-arrow.disabled {
+    pointer-events: none;
+    opacity       : 0.5;
+}
+
+.pagination-arrow svg {
+    width       : 20px;
+    height      : 20px;
+    stroke      : #A0AEC0;
+    stroke-width: 2.5;
+}
+
+/* Media Query for better mobile responsiveness */
+@media (max-width: 520px) {
+    .pagination-container {
+        gap: 0.5rem;
+    }
+
+    .report-paginator-page .report-page-link {
+        width    : 2rem;
+        height   : 2rem;
+        font-size: 0.9rem;
+    }
+
+    .pagination-arrow {
+        width : 2.5rem;
+        height: 2.5rem;
+    }
 }

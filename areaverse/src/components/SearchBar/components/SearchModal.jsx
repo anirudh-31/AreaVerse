@@ -13,7 +13,8 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
   const [fetchingRes, setFetchingRes] = useState(false);
   const [hasMoreRes , setHasMoreRes ] = useState(null);
   const [searchRslts, setSearchRslts] = useState([]);
-  
+  const [hasSearched, setHasSearched] = useState(false);
+
   const observerRef                   = useRef();
   const lastResultElementRef = useCallback( node => {
     if (fetchingRes) return;
@@ -30,13 +31,16 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
     triggerHaptic('light');
     setFetchingRes(true);
     try {
-      const result = await api.get(`/search?query=${searchQuery}&type=${searchType}&page=${resultsPage}&limit=5`);
+      const result = await api.get(`/search?query=${searchQuery}&type=${searchType}&page=${1}&limit=5`);
       const data   = result?.data?.results;
+      setSearchRslts([])
       if(data?.length > 0 ){
         setSearchRslts([...data])
-        setHasMoreRes(true)
+        setHasMoreRes(true);
+        setHasSearched(true);
       }else{
-        setHasMoreRes(false)
+        setHasMoreRes(false);
+        setHasSearched(true);
       }
       setFetchingRes(false)
     } catch (error) {
@@ -47,19 +51,20 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
   useEffect(() => {
     if(resultsPage > 1 && hasMoreRes) {
       setFetchingRes(true);
-       api.get(`/search?query=${searchQuery}&type=${searchType}&page=${resultsPage}&limit=5`).then((result) => {
-        const data   = result?.data?.results;
-        if(data?.length > 0 ){
-          setSearchRslts((curr) => [...curr, ...data])
-        } else{
-          setHasMoreRes(false);
-        }
-        setFetchingRes(false);
-       }).catch((err) => {
+      api.get(`/search?query=${searchQuery}&type=${searchType}&page=${resultsPage}&limit=5`).then((result) => {
+      const data   = result?.data?.results;
+      setHasSearched(true);
+      if(data?.length > 0 ){
+        setSearchRslts((curr) => [...curr, ...data]);
+      } else{
+        setHasMoreRes(false);
+      }
+      setFetchingRes(false);
+      }).catch((err) => {
         setFetchingRes(false);
         setHasMoreRes(false);
         console.log(err)
-       });
+      });
     }
   }, [resultsPage])
   return (
@@ -118,6 +123,13 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
                     </div>
                   </div>
                 </React.Fragment>
+              )}
+              {
+                (!fetchingRes && hasSearched && searchRslts.length === 0) &&
+                <div className="search-message">No results found</div>
+              }
+              {!fetchingRes && searchRslts.length > 0 && !hasMoreRes && (
+                <div className="search-message">You've reached the end!</div>
               )}
             </div>
         

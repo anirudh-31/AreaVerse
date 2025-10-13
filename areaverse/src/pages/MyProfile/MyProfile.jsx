@@ -63,11 +63,23 @@ function MyProfile() {
                                 <div className="stat-label">Posts</div>
                             </div>
                             <div className="stat-item">
-                                <div className="stat-number">00</div>
+                                <div className="stat-number">
+                                    {
+                                        userDetails?.followers.length > 1 ?
+                                        userDetails?.followers :
+                                        '0'.concat(userDetails?.followers)
+                                    }
+                                </div>
                                 <div className="stat-label">Followers</div>
                             </div>
                             <div className="stat-item">
-                                <div className="stat-number">00</div>
+                                <div className="stat-number">
+                                    {
+                                        userDetails?.following.length > 1 ?
+                                        userDetails?.following :
+                                        '0'.concat(userDetails?.following)
+                                    }
+                                </div>
                                 <div className="stat-label">Following</div>
                             </div>
                         </div>

@@ -59,8 +59,6 @@ function VerifyEmail() {
             try{
                 const response = await api.post("/auth/verify-email", payload);
                 const statusMessage = response?.data?.message;
-                console.log(statusMessage)
-                console.log(response?.data)
                 setAuthSuccess(statusMessage);
 
             }catch(err){

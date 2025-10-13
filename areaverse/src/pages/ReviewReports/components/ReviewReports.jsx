@@ -1,10 +1,12 @@
 import React from 'react'
 import ReportRibbon from './ReportRibbon'
 import { timeAgo } from '../../../utils/CommonFunctions'
+import ReportPaginator from './ReportPaginator'
 
 function ReviewReports({ reports }) {
+    
     return (
-        <>
+        <React.Fragment>
             <div className="review-page-header">
                 <h2 className="review-page-title">Pending Reviews</h2>
                 <p className="review-page-subtitle">Select a post to review and approve or reject it.</p>
@@ -20,7 +22,7 @@ function ReviewReports({ reports }) {
                     />
                 ))}
             </div>
-        </>
+        </React.Fragment>
     )
 }
 

@@ -1,9 +1,15 @@
 import { User } from 'lucide-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function UserSearchResult( { data }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/user/${data?.id}`)
+  }
   return (
-    <div className="result-item">
+    <div className="result-item" onClick={handleClick}>
       <div className="result-avatar">
         <User />
       </div>

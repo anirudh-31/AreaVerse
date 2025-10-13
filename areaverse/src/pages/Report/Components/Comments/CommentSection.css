@@ -1,0 +1,333 @@
+
+.comment-card{
+    background-color: var(--color-surface);
+    padding         : 1.5rem;
+    border-radius   : var(--card-radius);
+    margin-top      : 1rem;
+    border          : 1px solid var(--color-border);
+    box-shadow      : 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.comment-section-container > .comments-wrapper > .comment-card.new-comment-card {
+    padding      : 1rem;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form {
+    display    : flex;
+    align-items: flex-start;
+    gap        : 1rem;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > .user-avatar{
+    width          : 2rem;
+    height         : 2rem;
+    border-radius  : 9999px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    background     : var(--color-primary);
+    font-size      : 1.05rem;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > .flex-1{
+    flex: 1 1 0%;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-input{
+    width           : 100%;
+    background-color: var(--color-glass);
+    border          : 1px solid var(--glass-border);
+    color           : var(--color-text);
+    padding         : 0.75rem;
+    border-radius   : 0.5rem;
+    resize          : none;
+    box-sizing      : border-box;
+    transition      : all 0.2s ease;
+}
+
+#comment-input::placeholder, 
+.reply-textarea::placeholder { 
+    color: var(--color-text-muted); 
+}
+
+#comment-input:focus { 
+    outline     : none; 
+    box-shadow  : 0 0 0 2px var(--color-primary-alt); 
+    border-color: var(--color-primary-alt); 
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons{
+    margin-top: 0.75rem;
+    text-align: right;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn {
+    font-weight  : 600;
+    padding      : 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border       : none;
+    cursor       : pointer;
+    transition   : background-color 0.2s ease, transform 0.1s ease;
+}
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn:active{
+    transform: scale(0.97);
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn-secondary {
+    color           : var(--color-text-muted);
+    background-color: transparent;
+    margin-right    : 0.5rem;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn-secondary:hover {
+    color: var(--color-text);
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn-primary {
+    background-color: var(--color-primary-alt);
+    color           : #fff;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn-primary:hover {
+    background-color: var(--color-primary-alt-dark);
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn-primary:disabled {
+    background-color: var(--color-text-muted);
+    cursor          : not-allowed;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn.is-loading{
+    position      : relative;
+    color         : transparent !important;
+    pointer-events: none;
+}
+
+.comment-section-container > .comments-wrapper > .comment-card > .comment-form > div > #comment-buttons > .btn.is-loading::after {
+    content      : '';
+    position     : absolute;
+    left         : 50%;
+    top          : 50%;
+    width        : 1rem;
+    height       : 1rem;
+    margin-top   : -0.5rem;
+    margin-left  : -0.5rem;
+    border       : 2px solid rgba(255, 255, 255, 0.2);
+    border-top   : 2px solid #fff;
+    border-radius: 50%;
+    animation    : spinLoader 0.6s linear infinite;
+}
+
+@keyframes spinLoader { 
+    to { 
+        transform: rotate(360deg); 
+    } 
+}
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    margin-bottom  : 1.25rem;
+}
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header > h2 {
+    font-size  : 1.25rem;
+    font-weight: 700;
+    color      : var(--color-text);
+} 
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header > .collapse-btn {
+    display      : flex;
+    align-items  : center;
+    background   : none;
+    border       : none;
+    color        : var(--color-text-muted);
+    cursor       : pointer;
+    padding      : 0.25rem;
+    border-radius: 0.25rem;
+    transition   : all 0.2s;
+}
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header > .collapse-btn:hover {
+    color           : var(--color-text);
+    background-color: var(--color-text-muted);
+}
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header > .collapse-btn > svg {
+    width     : 1.25rem;
+    height    : 1.25rem;
+    transition: transform 0.2s ease-in;
+
+}
+.comment-section-container > .comments-wrapper > #comments-section > .comments-header > .collapse-btn.is-collapsed > svg{
+    transform: rotate(-90deg);
+}
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-list-wrapper {
+    display           : grid;
+    grid-template-rows: 1fr;
+    transition        : grid-template-rows 0.4s ease-in-out;
+}
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-list-wrapper.is-collapsed{
+    grid-template-rows: 0fr;
+}
+
+.comment-section-container > .comments-wrapper > #comments-section > .comments-list-wrapper > .comments-list {
+    overflow      : hidden;
+    display       : flex;
+    flex-direction: column;
+    gap           : 1.5rem;
+}
+
+.comment-enter-active > .comment {
+    display: flex;
+    gap    : 1rem;
+}
+
+.comment-enter {
+    opacity   : 0;
+    transform : translateY(-20px) scale(0.98);
+    max-height: 0;
+    overflow  : hidden;
+}
+.comment-enter-active {
+    opacity   : 1;
+    transform : translateY(0) scale(1);
+    max-height: 500px;
+    transition: opacity 0.3s ease-out, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.5s ease-out;
+}
+
+.comment-enter-active > .comment > .user-avatar {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 2rem;
+    height         : 2rem;
+    background     : var(--color-primary);
+    border-radius  : 50%;
+}
+
+.comment-enter-active > .comment.is-reply {
+    margin-left: 1.5rem;
+}
+
+@media (min-width: 640px) { 
+    .comment.is-reply { 
+        margin-left: 3.5rem; 
+    } 
+}
+
+.comment-enter-active > .comment > .comment-content {
+    flex: 1;
+}
+
+.comment-enter-active > .comment > .comment-content > .comment-bubble {
+    background-color      : var(--color-panel);
+    padding               : 1rem;
+    border-radius         : var(--card-radius);
+    border-top-left-radius: 0;
+    transition            : all 0.2s ease;
+}
+
+.comment-enter-active > .comment:hover > .comment-content > .comment-bubble {
+    transform : translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.comment-enter-active > .comment > .comment-content > .comment-header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+}
+
+.comment-enter-active > .comment > .comment-content > .comment-header > .comment-author {
+    font-weight: 700;
+    color      : var(--color-text);
+}
+
+.comment-enter-active > .comment > .comment-content > .comment-header > .comment-timestamp {
+    font-size: 0.75rem;
+    color    : var(--color-text-muted);
+}
+
+.comment > .comment-content > .comment-actions {
+    display     : flex;
+    align-items : center;
+    gap         : 1rem;
+    margin-top  : 0.5rem;
+    font-size   : 0.75rem;
+    color       : var(--color-text-muted);
+    padding-left: 0.25rem;
+}
+
+.comment > .comment-content > .comment-actions > button {
+    background : none;
+    border     : none;
+    cursor     : pointer;
+    font-weight: 600;
+    transform  : transform 0.1s ease;
+}
+
+.comment > .comment-content > .comment-actions > button:active {
+    transform: scale(0.95);
+}
+
+.comment > .comment-content > .comment-actions > .like-btn {
+    display    : flex;
+    align-items: center;
+    gap        : 0.25rem;
+    color      : inherit;
+}
+
+.comment > .comment-content > .comment-actions > .like-btn:hover {
+    color: var(--color-error);
+}
+
+.comment > .comment-content > .comment-actions > .like-btn svg {
+    width : 1rem;
+    height: 1rem;
+}
+
+.comment > .comment-content > .comment-actions > .reply-btn {
+    color: inherit;
+}
+
+.comment > .comment-content > .comment-actions > .reply-btn:hover {
+    color: var(--color-text);
+}
+
+
+.comment > .comment-content > .view-replies-btn {
+    color      : var(--color-primary-alt);
+    font-size  : 0.75rem;
+    font-weight: 600;
+    margin-top : 0.75rem;
+    margin-left: 0.25rem;
+    background : none;
+    border     : none;
+    cursor     : pointer;
+}
+
+
+
+.comment > .skeleton {
+    background-color: var(--color-surface);
+    border-radius   : 0.25rem;
+    animation       : shimmer 1.5s infinite linear;
+    background-image: linear-gradient(90deg, var(--color-surface) 0px, #394150 40px, var(--color-surface) 80px);
+    background-size : 600px;
+}
+
+.comment > .skeleton.avatar {
+    width        : 2.5rem;
+    height       : 2.5rem;
+    border-radius: 9999px;
+}
+
+.comment > .comment-content > .skeleton.line {
+    height: 1rem;
+}
+
+.comment > .comment-content > .skeleton.line-sm {
+    height: 0.75rem;
+}

@@ -43,6 +43,7 @@
     align-items    : center;
     justify-content: center;
     font-size      : 1.75rem;
+    cursor          : pointer;
 }
 .content-fade-in {
     animation: reportFadeIn 400ms ease-out forwards;
@@ -62,6 +63,7 @@
 .report-card-header .author-name {
     font-weight: 600;
     color      : var(--color-text);
+    cursor     : pointer;
 }
 
 .report-card-header .report-timestamp {
@@ -283,6 +285,7 @@
     display    : flex;
     align-items: center;
     gap        : 0.5rem;
+    font-size  : 1rem;
 }
 
 .report-stats .likes svg {
@@ -999,4 +1002,58 @@
 .btn-resubmit:hover {
     transform : translateY(-2px);
     box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+
+/* Heart on double-tap */
+.image-heart-overlay{
+    position       : absolute;
+    inset          : 0;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    pointer-events : none;
+}
+
+.image-heart-overlay > .image-heart {
+    width    : 6.25rem;
+    height   : 6.25rem;
+    opacity  : 0;
+    transform: scale(0);
+    filter   : drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+.image-heart-overlay > .image-heart.animate {
+    animation: imageHeartBounceAndRotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes imageHeartBounceAndRotate {
+    0% { 
+        transform: scale(0) ; 
+        opacity: 0; 
+    }
+    30% { 
+        transform: scale(1.2) ; 
+        opacity: 1;
+    }
+    50% { transform: scale(1)  }
+    75% { transform: scale(1.1) }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+/* floating hearts animation */
+.like-anim-heart {
+    position      : fixed;
+    z-index       : 1000;
+    pointer-events: none;
+    animation: flyToCenter 1s ease-out forwards;
+}
+.like-anim-heart svg {
+    width : 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.7));
+}
+@keyframes flyToCenter {
+    0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+    100% { transform: translate(var(--endX), var(--endY)) scale(1.5); opacity: 0; }
 }

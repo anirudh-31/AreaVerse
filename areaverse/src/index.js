@@ -21,6 +21,8 @@ import { ThemeProvider } from "./features/Context/ThemeContext";
 import CommunityPostForm from "./pages/CommunityPostForm/CommunityPostForm";
 import ViewReport from "./pages/Report/ViewReport";
 import ReviewReport from "./pages/ReviewReports/ReviewReport";
+import User from "./pages/User/User";
+import Logout from "./pages/Logout/Logout";
 
 const router = createBrowserRouter([
   {
@@ -57,10 +59,15 @@ const router = createBrowserRouter([
           { path: "/me"              , element: <MyProfile />        },
           { path: "/create-report"   , element: <CommunityPostForm />},
           { path: "/report/:reportId", element: <ViewReport/>        },
-          { path: "/review-reports"  , element: <ReviewReport/>     }
+          { path: "/review-reports"  , element: <ReviewReport/>      },
+          { path: "/user/:id"        , element: <User/>              },
         ]
       }
     ]
+  },
+  { 
+    path: "/logout", 
+    element: <Logout/>            
   }
 ]);
 
