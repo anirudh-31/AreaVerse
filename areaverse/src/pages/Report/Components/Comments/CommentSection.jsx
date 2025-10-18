@@ -119,12 +119,12 @@ function CommentSection({ userInfo, postId, setCommentCount, commentCount }) {
                         if (commentsList.length === index + 1) {
                               return (
                               <div ref={lastCommentRef} key={comment.id}>
-                                  <CommentWithAnimation comment={comment} />
+                                  <CommentWithAnimation comment={comment} postId={postId}/>
                               </div>
                               );
                           } else {
                               return (
-                                  <CommentWithAnimation key={comment.id} comment={comment} />
+                                  <CommentWithAnimation key={comment.id} comment={comment} postId={postId}/>
                               );
                           }
                       })

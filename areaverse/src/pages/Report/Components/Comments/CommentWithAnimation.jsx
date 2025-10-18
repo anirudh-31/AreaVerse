@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Comment from './Comment';
 
-function CommentWithAnimation({ comment, delay= 0}) {
+function CommentWithAnimation({ comment, delay= 0, postId }) {
     const [ inView, setInView ] = useState(false);
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -11,7 +11,7 @@ function CommentWithAnimation({ comment, delay= 0}) {
     }, [delay]);
   return (
     <div className={`comment-enter ${inView ? 'comment-enter-active' : ''}`}>
-        <Comment comment={comment} />
+        <Comment comment={comment} postId={postId}/>
     </div>
   )
 }
