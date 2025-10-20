@@ -121,7 +121,7 @@ function PostCard({ post, isTopCard, onSwipe, style}) {
               {post?.title}
             </h3>
             <p style={{...styles.postContent, color: hasImages ? '#FFF' : 'var(--color-text)'}}>
-                {isLongContent && !isExpanded ? `${post.content.substring(0, CHAR_LIMIT)}... ` : post?.description}
+                {isLongContent && !isExpanded ? `${post?.description.substring(0, CHAR_LIMIT)}... ` : post?.description}
                 {isLongContent && !isExpanded && (
                     <button onClick={handleMoreClick} style={styles.moreButton}>more</button>
                 )}
