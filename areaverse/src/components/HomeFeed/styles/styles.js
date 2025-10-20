@@ -6,10 +6,9 @@ export const styles = {
         display       : 'flex',
         alignItems    : 'center',
         justifyContent: 'center',
+        minHeight     : 0,
     },
     postCard: {
-        // backgroundImage     : 'linear-gradient(145deg, rgba(var(--card-bg-start-rgba), 0.75), rgba(var(--card-bg-end-rgba), 0.75))',
-        // backgroundImage     : 'linear-gradient(225deg, var(--aurora-1), var(--aurora-2), var(--aurora-3))',
         backgroundColor     : 'var(--form-card-color)',
         backgroundSize      : '400% 400%',
         animation           : 'aurora 10s ease infinite',
@@ -210,5 +209,23 @@ export const styles = {
         bottom  : 0, 
         width   : '30%', 
         zIndex  : 1 ,
+    },
+    topLoader: {
+        position       : 'absolute',
+        top            : '1%',
+        left           : '50%',
+        transform      : 'translateX(-50%)',
+        width          : '80%',
+        maxWidth       : '300px',
+        height         : '4px',
+        backgroundColor: 'var(--color-panel)',
+        borderRadius   : '2px',
+        overflow       : 'hidden',
+    },
+    topLoaderBar: {
+        width          : '100%',
+        height         : '100%',
+        backgroundImage: 'linear-gradient(90deg, transparent, var(--color-surface), transparent)',
+        animation      : 'shimmer-loader 2s infinite linear',
     }
 };
