@@ -20,6 +20,21 @@ function stringToGradient(str) {
     return `linear-gradient(135deg, ${color1}, ${color2})`;
 }
 
+function stringToHex(str){
+    let hash1 = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash1 = str.charCodeAt(i) + ((hash1 << 5) - hash1);
+    }
+    function intToColor(hash) {
+        return "#" + ((hash >> 24) & 0xFF).toString(16).padStart(2, "0") +
+            ((hash >> 16) & 0xFF).toString(16).padStart(2, "0") +
+            ((hash >> 8) & 0xFF).toString(16).padStart(2, "0");
+    }
+
+    const color = intToColor(hash1);
+    return color;
+}
+
 function timeAgo(dateString) {
     const now = new Date();
     const past = new Date(dateString);
@@ -79,6 +94,7 @@ function triggerHaptic(style = 'light') {
 export {
     formatDate,
     stringToGradient,
+    stringToHex,
     timeAgo,
     formatToISTTimeStamp,
     triggerHaptic

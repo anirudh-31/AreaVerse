@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import './Home.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import ActionButtons from '../../components/FloatingActionButtons/ActionButtons';
+import CardStack from '../../components/HomeFeed/components/CardStack';
 
 function Home() {
   const [title, setTitle] = useState("AreaVerse - Home");
@@ -10,15 +11,14 @@ function Home() {
   useEffect(() => {
     document.title = title;
   }, [title])
-  const { user } = useSelector((state) => state.auth)
+
   return (
     <React.Fragment>
       <div className="home-container">
         <SearchBar />
+        <CardStack />
         <ActionButtons />
       </div>
-      
-      
     </React.Fragment>
   )
 }

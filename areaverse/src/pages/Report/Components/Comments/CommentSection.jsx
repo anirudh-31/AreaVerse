@@ -61,13 +61,16 @@ function CommentSection({ userInfo, postId, setCommentCount, commentCount }) {
 
   useEffect(() => {
     const fetchComments = async () => {
-      setLoadingNewCmnts(true);
-      const response = await api.get(`/comment/list?postId=${postId}&page=${currentPage}&limit=${resultLimit}`);
-      const data     = response?.data;
-      setCommentsList([...commentsList, ...data.comments])
-      setLoadingNewCmnts(false);
-      setCommentLimitMet(data?.pagination?.totalPages === currentPage);
-      
+      try {
+        setLoadingNewCmnts(true);
+        const response = await api.get(`/comment/list?postId=${postId}&page=${currentPage}&limit=${resultLimit}`);
+        const data     = response?.data;
+        setCommentsList([...commentsList, ...data.comments])
+        setLoadingNewCmnts(false);
+        setCommentLimitMet(data?.pagination?.totalPages === currentPage);
+      } catch (error) {
+        setLoadingNewCmnts(false);
+      }
     }
      if(currentPage > 1 && !commentLimitMet && !loadingNewCmnts){
       fetchComments();

@@ -1,0 +1,13 @@
+@media (min-width: 768px) {
+    .feed-card {
+        min-width : 500px !important;
+        max-height: 700px !important;
+        top       : 0;
+    }
+}
+
+@media (max-width: 767px){
+    .feed-card{
+        top: 50%;
+    }
+}

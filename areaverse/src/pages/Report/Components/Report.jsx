@@ -1,5 +1,5 @@
 import { Bookmark, Heart, MessageCircle, Share2, Tag, TriangleAlert } from 'lucide-react'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ImageCarousel from './ImageCarousel'
 import { timeAgo } from '../../../utils/CommonFunctions'
 import { useSelector } from 'react-redux'
@@ -46,6 +46,18 @@ function Report({ postData }) {
             likedByUser: data.liked
         });
     }
+
+    useEffect(() => {
+        const recordEngagement = async () => {
+            try {
+                const response = await api.post(`/engagement/view/${postData?.id}`);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        recordEngagement();
+    }, [])
     async function handleDoubleClick(){
         if(!likesData.likedByUser){
             await updateLikes();

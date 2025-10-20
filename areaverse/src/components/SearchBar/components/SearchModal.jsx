@@ -15,7 +15,7 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
   const [searchRslts, setSearchRslts] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const observerRef                   = useRef();
+  const observerRef          = useRef();
   const lastResultElementRef = useCallback( node => {
     if (fetchingRes) return;
     if (observerRef.current) observerRef.current.disconnect();
@@ -63,7 +63,6 @@ function SearchModal({ handleSearchModalDisplay, searchOverlayRef, searchInterfa
       }).catch((err) => {
         setFetchingRes(false);
         setHasMoreRes(false);
-        console.log(err)
       });
     }
   }, [resultsPage])

@@ -16,7 +16,8 @@ function ViewReport() {
     if(reportId){
       dispatch(retrievePost(reportId));
     }
-  }, [reportId])
+  }, [reportId]);
+  
   function renderContent(){
     if(retrieving){
       return <SkeletonLoader />

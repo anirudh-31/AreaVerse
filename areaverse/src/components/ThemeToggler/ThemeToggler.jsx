@@ -1,30 +1,28 @@
 import React, {useState}from 'react';
 import './ThemeToggler.css';
 import { useTheme } from '../../features/Context/ThemeContext';
+import { Moon, SunMedium } from 'lucide-react';
 function ThemeToggler() {
   const {theme, setTheme} = useTheme();
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
   return (
     <div 
-        className={`theme-toggler ${theme !== "light" ? 'active' : ''}`} 
+        className={`theme-toggler`} 
         role='switch'
         aria-checked={theme}
-        tabIndex={0}
         aria-label='Toggle dark mode'
         onClick={toggleTheme}
-        onKeyDown={(e) => {
-        if (e.key === " " || e.key === "Enter") {
-          e.preventDefault();
-          toggleTheme();
-        }}}
         >
-        <div className="bg-layer">
-            {/* Clouds for light mode */}
+          {
+            theme === "light" ? 
+            <Moon />:
+            <SunMedium/>
+          }
+        {/* <div className="bg-layer">
             <div className="cloud c1"></div>
             <div className="cloud c2"></div>
             <div className="cloud c3"></div>
-
-            {/* Stars for dark mode */}
+            
             <div className="bg-star s1"></div>
             <div className="bg-star s2"></div>
             <div className="bg-star s3"></div>
@@ -39,7 +37,7 @@ function ThemeToggler() {
             <span className="crater c3"></span>
             <span className="crater c4"></span>
             <span className="crater c5"></span>
-        </div>
+        </div> */}
     </div>
   )
 }

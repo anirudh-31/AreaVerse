@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Menu.css';
 import { useNavigate } from 'react-router-dom';
-import { Bookmark, ChartNoAxesCombined, FileWarning, HomeIcon, LogOut, MapPinned, Menu, UserRoundCog, X } from 'lucide-react';
+import { Bookmark, ChartNoAxesCombined, FileWarning, HomeIcon, LogOut, MapPinned, Menu, Search, UserRoundCog, X } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
+import { toggleSearchPanelDisplay } from '../../features/config/configSlice';
 
 function Navbar() {
-  const { user } = useSelector((state) => state.auth);
+  const { user   } = useSelector(( state ) => state.auth  );
   const [displayMobileMenu, toggleMobileMenuDisplay] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,9 +15,14 @@ function Navbar() {
   function handleMobileMenuDisplay() {
     toggleMobileMenuDisplay(!displayMobileMenu)
   }
+
   function navigateTo(link) {
     toggleMobileMenuDisplay(!displayMobileMenu);
     navigate(link);
+  }
+
+  function displaySearch() {
+    dispatch(toggleSearchPanelDisplay())
   }
   return (
     <React.Fragment>
@@ -29,6 +35,12 @@ function Navbar() {
         </div>
         <nav className="nav">
           <ul>
+            <li>
+              <span className="nav-link" onClick={displaySearch}>
+                <Search />
+                Search
+              </span>
+            </li>
             <li>
               <span className="nav-link" onClick={() => navigate("/home")}>
                 <HomeIcon />
@@ -92,6 +104,9 @@ function Navbar() {
             <span></span>
           </div>
           <div className="nav-options">
+            <button className='mobile-menu-search-button' onClick={displaySearch}>
+              <Search />
+            </button>
             <ThemeToggler />
             <span className="mobile-menu-logo" onClick={() => navigate("/")}>
               AreaVerse
